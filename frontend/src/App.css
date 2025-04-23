@@ -1,30 +1,85 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Parisienne&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-:root{
+:root {
   --primary-font: "Montserrat", sans-serif;
-  --primary-bg:#b4245d;
-  --secondary-bg:#e72e77;
-  --primary-bg2:#b76f7a;
+  --secondary-font: "Parisienne", "Brush Script MT", cursive;
+  --primary-bg: #b76f7a;
+  --secondary-bg: #f8eae8;
+  --color-text-on-secondary: #8e3c50;
+  --accent-bg-color: #d6a5ad !important;
+  --body-font:"Work Sans", sans-serif;
   font-weight: 400;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.primary-bg{
-  background-color: var(--primary-bg)!important;
+.primary-bg {
+  background-color: var(--primary-bg) !important;
 }
-.secondary-bg{
-  background-color: var(--secondary-bg)!important;
+.secondary-bg {
+  background-color: var(--secondary-bg) !important;
 }
-.fs-14{
+.fs-14 {
   font-size: 14px;
 }
 
-.form-select{
-  background-image: none!important;
+.form-select {
+  background-image: none !important;
 }
-.form-select:focus{
-  border-color: #fff!important;
-  box-shadow: 0 0 0 .25em #fff!important;
+.form-select:focus {
+  border-color: #fff !important;
+  box-shadow: 0 0 0 0.25em #fff !important;
+}
+.menu a{
+  position:relative;
+  /* border-bottom:2px solid var(--primary-bg) */
+}
+.menu a:hover{
+  font-weight: 600!important;
+  color: var(--primary-bg)!important;
+}
+.menu a::before{
+  content: '';
+  position: absolute;
+  bottom: 0; /* underline sits below text */
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  /* transform-origin: center; */
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-bg); /* pink underline */
+  transition: transform 0.4s ease;
+}
+.menu a:hover::before {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.login-btn:hover,.search-btn:hover{
+  background-color: var(--primary-bg)!important;
+  transition: .5s ease-in-out;
+}
+
+.modal-content{
+  backdrop-filter: blur(8px) saturate(180%)!important;
+  background-color: rgba(255, 255, 255, 0.6)!important;
+  /* color:#fff!important; */
+  /* background-color: #000!important ; */
+ 
+}
+.modal-backdrop{
+  --bs-backdrop-bg: rgba(5, 5, 5, 0.3)!important; 
+  backdrop-filter: blur(16px)!important; /* Optional: add blur */
+
+}
+.modal-content input,.modal-content textarea  {
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter:blur(16px);
+}
+.form-control:focus,.form-select:focus,.form-check-input:focus{
+  box-shadow: none!important;outline: none;
+}
+.form-check-input:checked {
+  background-color: var(--primary-bg)!important;
+  border-color: var(--primary-bg)!important;
 }
