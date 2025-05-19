@@ -7,7 +7,6 @@ import { IoMdArrowDropdown } from "react-icons/io";
 const SearchModal = () => {
   const search = useSelector((state) => state.modal.searchModal)
   const dispatch = useDispatch()
-  console.log(search, 'sea')
   return (
     <>
       <Modal show={search} fullscreen onHide={() => dispatch(searchModal())} >

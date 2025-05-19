@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const userSchema = new mongoose.Schema({
     firstname:{
         type:String,
-        require:true
+        required:false
     },
     lastname:{
         type:String,
@@ -11,25 +11,50 @@ const userSchema = new mongoose.Schema({
     middlename:{
         type:String,
     },
+    username:{
+        type:String,
+        required:true,
+    },
     email:{
         type:String,
-        require:true,
+        required:true,
+        unique:true,
     },
     password:{
         type:String,
-        require:true,
+        required:true,
     },
     eventlocation:{
         type:String,
     },
-    contry:{
-        type:String,
+    country:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'country'
     },
     eventdate:{
-        type:Number,
+        type:Date,
     },
     phonenumber:{
         type:Number,
+    },
+    businessname:{
+        type:String,
+        required:false,
+    },
+    businessgroup:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'businessgroup',
+        required:false,
+
+    },
+    businesscategory:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'businesscategory',
+        required:false,
+    },
+    usertype:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"usertype",
     }
-    
-})
+},{timestamps:true})
+module.exports = mongoose.model('user',userSchema)//creation of user model

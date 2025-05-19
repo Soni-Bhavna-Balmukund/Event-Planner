@@ -5,19 +5,19 @@ import logo from '../assets/images/logo4(4).png'
 import { Link } from 'react-router-dom'
 import { IoSearch } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
-import { loginModal, revieMmodalShow, searchModal, signupModal } from '../store/slice/modalSlice';
+import { authFormModal, revieMmodalShow, searchModal } from '../store/slice/modalSlice';
 import ReviewModal from './Modals/ReviewModal';
 import SearchModal from './Modals/SearchModal';
 import { FaBarsStaggered } from "react-icons/fa6";
 import { MdAppRegistration } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
-// import LoginModal from './Modals/loginModal';
-import SignupModal from './Modals/SignupModal';
 import Signup from './Modals/signup';
+import LoginModals from './Modals/LoginModals';
 
 
 const Header = () => {
     const dispatch = useDispatch()
+    const modalType = useSelector((state)=>state.modal.type)
 
     return (
         <>
@@ -44,7 +44,11 @@ const Header = () => {
                         </Col>
                         <Col md={4} className='text-end'>
                             <Button className='bg-transparent border-0' onClick={() => dispatch(searchModal())}><span className='me-4  fs-5 p-2 pt-1  rounded-circle search-btn' style={{background:'var(--accent-bg-color)'}}> <IoSearch /></span></Button><SearchModal />
-                            <Button className='bg-transparent border-0 ' onClick={()=>dispatch(signupModal())} ><span className=' py-2 px-4 rounded-pill login-btn' style={{background:'var(--accent-bg-color)'}}>Login/Sign Up</span></Button><Signup/>
+                            <Button className='bg-transparent border-0 ' onClick={()=>dispatch(authFormModal('login'))} ><span className=' py-2 px-4 rounded-pill login-btn' style={{background:'var(--accent-bg-color)'}}>Login/Sign Up</span></Button>
+    {/* {modalType==='login' && <LoginModals/>} */}
+    {modalType==='login' && <Signup/>}
+    {modalType==='signup' && <Signup/>}
+
                         </Col>
                     </Row></div>
 

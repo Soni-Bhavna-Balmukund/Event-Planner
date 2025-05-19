@@ -1,13 +1,30 @@
-export const getFormObj = (formdata, handleChange) => ({
-    firstname: { label: 'First Name', value: formdata.firstname, md: 6, type: 'text', onChange: handleChange },
-    lastname: { label: 'Last Name', value: formdata.lastname, md: 6, type: 'text', onChange: handleChange },
-    middlename: { label: 'Middle Name', value: formdata.middlename, md: 12, type: 'text', onChange: handleChange },
-    email: { label: 'Email', value: formdata.email, md: 12, type: 'email', onChange: handleChange },
-    password: { label: 'Password', value: formdata.password, md: 12, type: 'password', onChange: handleChange },
-    phonenumber: { label: 'Phone Number', value: formdata.phonenumber, md: 6, type: 'tel', onChange: handleChange },
+
+   
+
+export const getFormObj = (formdata, handleChange,groups,countries,filteredCategories) => ([
+    { label: 'First Name',name:'firstname', value: formdata.firstname, md: 6, type: 'text', onChange: handleChange ,user:'cust'},
+     { label: 'Last Name',name:'lastname', value: formdata.lastname, md: 6, type: 'text', onChange: handleChange ,user:'cust'},
+    { label: 'Middle Name',name:'middlename', value: formdata.middlename, md: 12, type: 'text', onChange: handleChange ,user:'cust'},
+     { label:'Username',name:'username',value:formdata.username,md:12,type:'text',onChange: handleChange,user:'common'},
+     { label: 'Business Name',name:'businessname', value: formdata.businessname, md: 12, type: 'text', onChange: handleChange ,user:'vendor'},
+     { label: 'Email',name:'email', value: formdata.email, md: 12, type: 'email', onChange: handleChange ,user:'common'},
+     { label: 'Password',name:'password', value: formdata.password, md: 12, type: 'password', onChange: handleChange ,user:'common'},
+     { label: 'Phone Number',name:'phonenumber', value: formdata.phonenumber, md: 6, type: 'tel', onChange: handleChange ,user:'common'},
+
     //Date Fields
-    eventdate: { label: 'Event Date', value: formdata.eventdate, md: 6, type: 'date', onChange: handleChange },
+   { label: 'Event Date', name:'eventdate',value: formdata.eventdate, md: 6, type: 'date', onChange: handleChange ,user:'cust'},
+   
     //select
-    contry: { label: 'Contry', value: formdata.contry, md: 6, type: 'select', options: ['India', 'Japan', 'US', 'UAE', 'Canada', 'Jammu'], onChange: handleChange },
-    eventlocation: { label: 'Event Location', value: formdata.eventlocation, md: 6, type: 'select', options: ['Select location', 'Surat', 'Mumbai', 'Thane', 'Gugram', 'Jaipur', 'Lonavala'], onChange: handleChange },
-})
+     { label: 'Country',name:'country', value: formdata.country, md: 6, type: 'select', options:countries.map((c)=>({value:c._id,label:c.countryname})), onChange: handleChange ,user:'common'},
+    { label: 'Event Location',name:'eventlocation', value: formdata.eventlocation, md: 6, type: 'select', options: ['Select location', 'Surat', 'Mumbai', 'Thane', 'Gugram', 'Jaipur', 'Lonavala'], onChange: handleChange,user:'cust' },
+   
+     { label: 'Business Type',name:'businessgroup', value: formdata.businessgroup, md: 6, type: 'select',
+           options: Array.isArray(groups) ? groups.map((g) => ({ value: g._id, label: g.gname })) : [],
+           onChange: handleChange,user:'vendor' },
+     { label: 'Business Category',name:'businesscategory', value: formdata.businesscategory, md: 6, type: 'select', options: Array.isArray(filteredCategories)?filteredCategories.map((c)=>({value:c._id,label: c.cname})):[], onChange: handleChange,user:'vendor',disabled: !formdata.businessgroup },
+])
+
+export const getLoginObj = (logindata,handleLoginChange)=>([
+     { label: 'Email',name:'email', value: logindata.email, md: 12, type: 'email', onChange: handleLoginChange },
+     { label: 'Password',name:'password', value: logindata.password, md: 12, type: 'password', onChange: handleLoginChange },
+    ])

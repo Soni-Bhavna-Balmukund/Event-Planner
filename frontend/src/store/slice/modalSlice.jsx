@@ -5,9 +5,9 @@ const modalSlice = createSlice({
     initialState:{
         modal:false,
         searchModal:false,
-        loginModal:false,
-        signupModal:false
+       type:null
     },
+    
     reducers:{
         revieMmodalShow:(state)=>{
             state.modal = !state.modal
@@ -15,15 +15,15 @@ const modalSlice = createSlice({
         searchModal:(state)=>{
             state.searchModal=!state.searchModal
         },
-        loginModal:(state)=>{
-            state.loginModal=!state.loginModal
-        },
-        signupModal:(state)=>{
-            state.signupModal=!state.signupModal
-        }
+       authFormModal:(state,action)=>{
+        state.type = action.payload
+       },
+       closeModal:(state)=>{
+        state.type=null
+       }
     }
     
 })
 
-export const {revieMmodalShow,searchModal,loginModal,signupModal} = modalSlice.actions
+export const {revieMmodalShow,searchModal,authFormModal,closeModal} = modalSlice.actions
 export default modalSlice.reducer
