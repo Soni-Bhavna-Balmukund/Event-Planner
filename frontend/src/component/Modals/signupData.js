@@ -1,7 +1,7 @@
 
    
 
-export const getFormObj = (formdata, handleChange,groups,countries,filteredCategories) => ([
+export const getFormObj = (formdata, handleChange,groups,countries,filteredCategories,locations) => ([
     { label: 'First Name',name:'firstname', value: formdata.firstname, md: 6, type: 'text', onChange: handleChange ,user:'cust'},
      { label: 'Last Name',name:'lastname', value: formdata.lastname, md: 6, type: 'text', onChange: handleChange ,user:'cust'},
     { label: 'Middle Name',name:'middlename', value: formdata.middlename, md: 12, type: 'text', onChange: handleChange ,user:'cust'},
@@ -16,7 +16,7 @@ export const getFormObj = (formdata, handleChange,groups,countries,filteredCateg
    
     //select
      { label: 'Country',name:'country', value: formdata.country, md: 6, type: 'select', options:countries.map((c)=>({value:c._id,label:c.countryname})), onChange: handleChange ,user:'common'},
-    { label: 'Event Location',name:'eventlocation', value: formdata.eventlocation, md: 6, type: 'select', options: ['Select location', 'Surat', 'Mumbai', 'Thane', 'Gugram', 'Jaipur', 'Lonavala'], onChange: handleChange,user:'cust' },
+    { label: 'Event Location',name:'locationName', value: formdata.locationName, md: 6, type: 'select', options: locations.map((location)=>({value:location._id,label:location.locationName})), onChange: handleChange,user:'cust' },
    
      { label: 'Business Type',name:'businessgroup', value: formdata.businessgroup, md: 6, type: 'select',
            options: Array.isArray(groups) ? groups.map((g) => ({ value: g._id, label: g.gname })) : [],

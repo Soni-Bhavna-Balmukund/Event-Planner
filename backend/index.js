@@ -6,6 +6,7 @@ const businessGroupRoutes = require('./router/businessGroupRoutes')
 const businessCategoryRoutes = require('./router/businessCategoryRoutes')
 const userTypeRoutes = require('./router/userTypeRoutes')
 const countryRoutes = require('./router/countryRoute')
+const locationRoutes =require('./router/locationRoute')
 
 const app = express()
 app.use(cors())
@@ -20,6 +21,8 @@ app.use('/businesscategory',businessCategoryRoutes)
 app.use('/usertype',userTypeRoutes)
 
 app.use('/country',countryRoutes)
+
+app.use('/locations',locationRoutes)
 
 const port = 5000;
 

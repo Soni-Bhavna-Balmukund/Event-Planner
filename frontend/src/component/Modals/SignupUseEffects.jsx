@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { categorytypes, countries, grouptypes } from "../../store/slice/usertype"
+import { categorytypes, countries, grouptypes, locations } from "../../store/slice/usertype"
 
 const SignupUseEffects = () =>{
     const dispatch = useDispatch()
@@ -44,6 +44,20 @@ const SignupUseEffects = () =>{
             }
         }
         fetchCountry()
+    },[])
+
+    useEffect(()=>{
+        const fetchlocation = async() =>{
+            try{
+                const res = await axios.get('http://localhost:5000/locations/allLocation')
+                const location = res.data.data.data
+                dispatch(locations(location))
+            }
+            catch(error){
+                console.log(error)
+            }
+        }
+       fetchlocation()       
     },[])
     return null
 }

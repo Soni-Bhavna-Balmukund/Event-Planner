@@ -1,6 +1,7 @@
 const businessCategory = require('../model/businessCategory')
 const businessGroup = require('../model/businessGroup')
 const countrymodal = require('../model/countrymodal')
+const LocationModal = require('../model/LocationModal')
 const usermodal = require('../model/usermodal')
 const usertype = require('../model/usertype')
 const { Sendmail1 } = require('../utility/nodemailer')
@@ -33,26 +34,34 @@ const adduser = async(req,res) => {
             return res.status(400).json({message:"country not found"})
         }
 
-        const businessGroups = await businessGroup.findById(user.businessgroup)
-        if(!businessGroups){
-            return res.status(400).json({message:"Business Group not found"})
-        }
+      
 
-        const businessCategories = await businessCategory.findById(user.businesscategory)
-        if(!businessCategories){
-            return res.status(400).json({message:"Business Category not found"})
+        const locations = await LocationModal.findById(user.locationName)
+        if(!locations){
+            return res.status(400).json({message:"Location not found"})
         }
 
         const userfields = {
-         firstname:user.firstname,lastname:user.lastname,middlename:user.middlename,username:user.username,email:user.email,password:user.password,eventlocation:user.eventlocation,country:country._id,eventdate:user.eventdate,phonenumber:user.phonenumber,businessname:user.businessname,usertype:usertypes._id,
+         firstname:user.firstname,lastname:user.lastname,middlename:user.middlename,username:user.username,email:user.email,password:user.password,eventlocation:locations._id,country:country._id,eventdate:user.eventdate,phonenumber:user.phonenumber,businessname:user.businessname,usertype:usertypes._id,
         }
 
         if (user.usertype === '680e68965b145049fc075b4c') {
             if (!user.businessgroup || !user.businesscategory || !user.businessname) {
               return res.status(400).json({status:false, message:'businessgroup and businesscategory are required for vendors'});
             }
-            userfields.businessGroups = businessGroups._id;
-            userfields.businessCategories = businessCategories._id;            
+            const businessGroups = await businessGroup.findById(user.businessgroup)
+            if(!businessGroups){
+                return res.status(400).json({message:"Business Group not found"})
+            }
+    
+            const businessCategories = await businessCategory.findById(user.businesscategory)
+            if(!businessCategories){
+                return res.status(400).json({message:"Business Category not found"})
+            }
+            // userfields.businessGroups = businessGroups._id;
+            // userfields.businessCategories = businessCategories._id; 
+            userfields.businessgroup = businessGroups._id;
+            userfields.businesscategory = businessCategories._id;           
           }
 
         const dbuser =  new usermodal(userfields)

@@ -25,7 +25,8 @@ const userSchema = new mongoose.Schema({
         required:true,
     },
     eventlocation:{
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'locations'
     },
     country:{
         type:mongoose.Schema.Types.ObjectId,

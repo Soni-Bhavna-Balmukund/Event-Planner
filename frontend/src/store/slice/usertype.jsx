@@ -8,6 +8,7 @@ const usertypeSlice = createSlice({
         grouptype:[],
         categorytype:[],
         country:[],
+        location:[]
     },
     reducers:{
         custtypes:(state,action)=>{
@@ -24,9 +25,12 @@ const usertypeSlice = createSlice({
         },
         countries:(state,action)=>{
             state.country = action.payload
+        },
+        locations:(state,action)=>{
+            state.location = action.payload
         }
     }
 })
 
-export const {custtypes,setSelectedRole,grouptypes,categorytypes,countries} = usertypeSlice.actions
+export const {custtypes,setSelectedRole,grouptypes,categorytypes,countries,locations} = usertypeSlice.actions
 export default usertypeSlice.reducer

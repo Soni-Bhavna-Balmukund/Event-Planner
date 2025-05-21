@@ -20,7 +20,8 @@ const SignupModal = ({ formdata, handleChange, handleClick }) => {
     (cat) => cat.gid === formdata.businessgroup
   );
   const countries = useSelector((state) => state.usertype.country)
-  const formobj = formdata ? getFormObj(formdata, handleChange, groups, countries,filteredCategories) : {};
+  const locations = useSelector((state)=>state.usertype.location)
+  const formobj = formdata ? getFormObj(formdata, handleChange, groups, countries,filteredCategories,locations) : {};
   const [custtype, setcusttype] = useState([])
   const selectedRole = useSelector((state) => state.usertype.selectedRole)
 

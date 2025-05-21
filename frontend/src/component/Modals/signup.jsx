@@ -13,7 +13,7 @@ const initialdata = {
   country: "",
   email: "",
   password: "",
-  eventlocation: "",
+  locationName: "",
   eventdate: "",
   phonenumber: "",
   businessname: "",
@@ -60,7 +60,7 @@ const Signup = () => {
     }
     catch(error){
       dispatch(showtoast({message:error.response.data.message,type:"error"}))
-      console.log(error.response.data.message)
+      console.log(error.response)
     }
   };
 
