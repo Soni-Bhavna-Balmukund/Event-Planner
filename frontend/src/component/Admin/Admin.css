@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-bg: #b76f7a;
+  --secondary-bg: #f8eae8;
+  --color-text-on-secondary: #8e3c50;
+  --accent-bg-color: #d6a5ad !important;
+}
+
+.heightbody {
+  height: calc(100vh - 62px) !important;
+}
+
+.headicon svg {
+  font-size: 28px;
+  color: var(--color-text-on-secondary);
+  margin: 0 12px;
+  cursor: pointer;
+}
+.settingicon {
+  scale: 1.1;
+  transition: all 0.4s ease;
+}
+.settingicon:hover {
+  scale: 1.4;
+  transform: rotate(67deg) !important;
+  transition: all 0.4s ease;
+}
+
+@media screen and (max-width: 500px) {
+  .headicon svg{
+    font-size: 28px;
+    color: var(--color-text-on-secondary);
+    margin: 0 3px!important;
+    cursor: pointer;
+    padding: 0;
+  }
+}

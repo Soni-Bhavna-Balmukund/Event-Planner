@@ -13,11 +13,18 @@ import { MdAppRegistration } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import Signup from './Modals/signup';
 import LoginModals from './Modals/LoginModals';
+import { clearAuth } from '../store/slice/auhSclice';
 
 
 const Header = () => {
     const dispatch = useDispatch()
     const modalType = useSelector((state)=>state.modal.type)
+    const auth = useSelector((state)=>state.auth.auth)
+    console.log(auth,'auth')
+    const handleLogout = () =>{
+        localStorage.removeItem('token')
+        dispatch(clearAuth())
+    }
 
     return (
         <>
@@ -44,10 +51,19 @@ const Header = () => {
                         </Col>
                         <Col md={4} className='text-end'>
                             <Button className='bg-transparent border-0' onClick={() => dispatch(searchModal())}><span className='me-4  fs-5 p-2 pt-1  rounded-circle search-btn' style={{background:'var(--accent-bg-color)'}}> <IoSearch /></span></Button><SearchModal />
-                            <Button className='bg-transparent border-0 ' onClick={()=>dispatch(authFormModal('login'))} ><span className=' py-2 px-4 rounded-pill login-btn' style={{background:'var(--accent-bg-color)'}}>Login/Sign Up</span></Button>
-    {/* {modalType==='login' && <LoginModals/>} */}
-    {modalType==='login' && <Signup/>}
+                                {
+                                auth?(<Button onClick={handleLogout}>Logout</Button>):(<>
+                                     <Button className='bg-transparent border-0 ' onClick={()=>dispatch(authFormModal('login'))} >
+                                <span className=' py-2 px-4 rounded-pill login-btn' style={{background:'var(--accent-bg-color)'}}>Login/Sign Up</span></Button>
+                                   {modalType==='login' && <Signup/>}
     {modalType==='signup' && <Signup/>}
+                           </> )
+                                }
+                             {/* <Button className='bg-transparent border-0 ' onClick={()=>dispatch(authFormModal('login'))} >
+                                 <span className=' py-2 px-4 rounded-pill login-btn' style={{background:'var(--accent-bg-color)'}}>Login/Sign Up</span></Button> */}
+    {/* {modalType==='login' && <LoginModals/>} */}
+    {/* {modalType==='login' && <Signup/>}
+    {modalType==='signup' && <Signup/>} */}
 
                         </Col>
                     </Row></div>

@@ -26,7 +26,6 @@ app.use('/locations',locationRoutes)
 
 const port = 5000;
 
-
     const startServer = async() => {
         try{
             await conn()

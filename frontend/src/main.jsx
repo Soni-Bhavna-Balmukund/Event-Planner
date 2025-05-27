@@ -7,14 +7,17 @@ import { BrowserRouter } from 'react-router'
 import store from './store/store.jsx'
 import {Provider} from 'react-redux'
 import ToastProvider from './store/Provider/toastProvider.jsx'
+import AuthProvider from './store/Provider/AuthProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
 
   <BrowserRouter>
   <Provider store={store}>
+    <AuthProvider>
     <ToastProvider>
     <App />
     </ToastProvider>
+    </AuthProvider>
     </Provider>
     </BrowserRouter>
   
