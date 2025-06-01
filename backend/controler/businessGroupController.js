@@ -54,6 +54,10 @@ const updateGroup = async(req,res) => {
 
         const dbgroup = await businessGroup.updateOne({_id:id},{gname:group.gname,remark:group.remark})
 
+        if(!group || dbgroup.matchedCount===0){
+             return res.status(400).json({status:false,data:{message:"Group not found"}})
+        }
+
         return res.status(200).json({status:true,data:{message:"Updated Successfully",data:dbgroup}})
     }
     catch(error){
@@ -68,6 +72,9 @@ const deleteGroup = async(req,res) =>{
         const id= req.params.id
         
         const dbgroup = await businessGroup.deleteOne({_id:id})
+        if(dbgroup.deletedCount===0){
+             return res.status(400).json({status:false,data:{message:"Group not found"}})
+        }
         return res.status(200).json({status:true,data:{message:"Deleted SuccessFully",data:dbgroup}})
     }
     catch(error){

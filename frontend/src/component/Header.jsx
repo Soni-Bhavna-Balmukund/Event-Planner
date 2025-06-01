@@ -14,13 +14,15 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import Signup from './Modals/signup';
 import LoginModals from './Modals/LoginModals';
 import { clearAuth } from '../store/slice/auhSclice';
-
+import SignupUseEffects from './Modals/SignupUseEffects';
 
 const Header = () => {
     const dispatch = useDispatch()
     const modalType = useSelector((state)=>state.modal.type)
     const auth = useSelector((state)=>state.auth.auth)
-    console.log(auth,'auth')
+    const location =  useSelector((state)=>state.usertype.location)
+    console.log(location)
+    // console.log(auth,'auth')
     const handleLogout = () =>{
         localStorage.removeItem('token')
         dispatch(clearAuth())
@@ -32,7 +34,17 @@ const Header = () => {
                 <div className="d-lg-block d-none">
                     <Row className='py-1 align-items-center primary-bg text-white fs-14 px-4' >
                         <Col md={3}>India's Favourite Event Planning Platform</Col>
-                        <Col md={2}> <Form.Select name="city" id="" className='py-1 bg-white rounded-1 fw-medium' disabled style={{color:'var(--primary-bg)'}}><option value="city" >All Cities</option></Form.Select></Col>
+                        <Col md={2}> <Form.Select name="city" id="" className='py-1 bg-white rounded-1 fw-medium' style={{color:'var(--primary-bg)'}} >
+                            <option value="city" >All Cities</option>
+                            <>
+                        {
+                            location.map((item,index)=>(
+                                <option>{item.locationName}</option>
+                            ))
+                        }
+                        <SignupUseEffects/> 
+                        </>
+                        </Form.Select></Col>
                         <Col md={7} className='text-end fw-medium'><Button className='bg-transparent border-0' onClick={() => dispatch(revieMmodalShow())}><MdOutlineRateReview className='fs-4' /> Write a Review </Button>
                             <ReviewModal />
                             <span className='ms-4'><RiMobileDownloadLine className='fs-4' /> <Link target='_blank' to='https://play.google.com/store/search?q=event%20planner&c=apps&hl=en_IN' className='fs-6 text-decoration-none text-white'> Download app</Link></span> </Col>

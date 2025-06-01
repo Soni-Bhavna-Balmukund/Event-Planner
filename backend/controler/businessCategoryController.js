@@ -41,4 +41,44 @@ const readAllCategory = async(req,res)=>{
     }
 }
 //#endregion
-module.exports = {addcategory,readAllCategory}
+
+//#region 
+const updateCategory = async(req,res) =>{
+    try{
+        const category =req.body
+        const id = req.params.id
+
+        const categoryfield = {cname:category.cname,remark:category.remark,gid:category.gid}
+
+        const catdb= await businessCategory.updateOne({_id:id},categoryfield)
+
+         if(!category || catdb.matchedCount===0){
+        return res.status(400).json({status:false,message:'Category not found'})
+    }
+
+         return res.status(200).json({status:true,data:{message:"Category updated successfully",data:catdb}})
+    }
+    catch(error){
+        console.log(error)
+        return res.status(500).json({status:false,data:{message:'internal server error',data:error}}) 
+    }
+}
+//#endregion
+
+//#region 
+const deleteCategory = async(req,res) =>{
+    try{
+        const id = req.params.id
+        const catdb = await businessCategory.deleteOne({_id:id})
+
+        if(catdb.deletedCount===0){
+             return res.status(400).json({status:false,data:{message:"Category not found"}})
+        }
+         return res.status(200).json({status:true,data:{message:"Category deleted successfully",data:catdb}})
+    }
+    catch(error){
+        return res.status(500).json({status:false,data:{message:'internal server error',data:error}}) 
+    }
+}
+//#endregion
+module.exports = {addcategory,readAllCategory,updateCategory,deleteCategory}

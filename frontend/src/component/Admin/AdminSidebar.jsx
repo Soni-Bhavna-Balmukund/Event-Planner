@@ -1,4 +1,4 @@
-import { Offcanvas } from "react-bootstrap"
+import { Offcanvas,Button } from "react-bootstrap"
 import {useDispatch,useSelector} from 'react-redux'
 import { setSidebar } from "../../store/slice/AdminSlice"
 
@@ -9,11 +9,11 @@ const AdminSidebar = () =>{
       
     return(
         <>
-        <Offcanvas show={show} onHide={()=>dispatch(setSidebar())} responsive="lg" style={{width:'270px'}}>
-            <Offcanvas.Header closeButton>nffe</Offcanvas.Header>
-            <Offcanvas.Body>
-        <div>uhwquodhq</div>
-        <div>Sidebar</div>
+        <Offcanvas show={show} onHide={()=>dispatch(setSidebar())} responsive="lg" style={{width:'255px'}}>
+            <Offcanvas.Header closeButton style={{backgroundColor:'var(--secondary-bg)'}}>nffe</Offcanvas.Header>
+            <Offcanvas.Body className="d-flex flex-column py-4" style={{backgroundColor:'var(--secondary-bg)'}}>
+       
+        <Button className="p-0 bg-transparent border-0 textSecondary">Add Budiness Group</Button>
             </Offcanvas.Body>
         </Offcanvas>
         </>

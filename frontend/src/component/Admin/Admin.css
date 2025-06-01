@@ -31,6 +31,13 @@
   transition: all 0.4s ease;
 }
 
+.boxShadow{
+  box-shadow: rgb(0, 0,0,.1) 3px 3px 6px 0px inset;
+}
+.textSecondary{
+  color: var(--color-text-on-secondary)!important;
+}
+
 @media screen and (max-width: 500px) {
   .headicon svg{
     font-size: 28px;

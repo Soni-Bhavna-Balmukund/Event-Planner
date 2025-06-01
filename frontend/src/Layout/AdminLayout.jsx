@@ -12,10 +12,10 @@ const AdminLayout = () =>{
         <Container fluid className="px-0">
                     <AdminHeader/>
             <Row className="m-0 heightbody" >
-                <Col className={!show ?('d-lg-block col-2 bg-black d-none'):('d-none')}>
+                <Col className={!show ?('d-lg-block col-3 boxShadow d-none'):('d-none')} style={{backgroundColor:'var(--secondary-bg)'}}>
                      <AdminSidebar/>
                 </Col>
-                <Col className={!show?'col-lg-10 bg-primary position-relative   ':'col-sm-12 position-relative bg-secondary'} >
+                <Col className={!show?'col-lg-9 bg-primary position-relative   ':'col-sm-12 position-relative bg-secondary'} >
                     
                     <Outlet />
                     

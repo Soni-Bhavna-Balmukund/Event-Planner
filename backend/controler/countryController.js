@@ -9,7 +9,7 @@ const createCountry = async(req,res)=>{
         return res.status(400).json({status:false,data:{message:"Country name not found"}})
         }
 
-        countryfield = {countryname:country.countryname}
+        const  countryfield = {countryname:country.countryname}
 
         const dbcountry = new countrymodal(countryfield)
 
@@ -27,6 +27,9 @@ const createCountry = async(req,res)=>{
 const readCountry = async(req,res) =>{
     try{
         const dbcountry = await countrymodal.find()
+        if(!dbcountry){
+             return res.status(400).json({status:false,data:{message:"Country not found"}})
+        }
         return res.status(200).json({status:true,data:{message:"All Countries ",data:dbcountry}})
     }
     catch(error){
@@ -34,4 +37,41 @@ const readCountry = async(req,res) =>{
     }
 }
 //#endregion
-module.exports={createCountry,readCountry}
+
+//#region update country
+const updateCountry = async(req,res) =>{
+    try{
+        const id = req.params.id
+        const country = req.body
+
+        const  countryfield = {countryname:country.countryname}
+        
+        const dbcountry = await countrymodal.updateOne({_id:id},countryfield)
+         if(!country || dbcountry.matchedCount===0){
+        return res.status(400).json({status:false,data:{message:"Country not found"}})
+       }
+        return res.status(200).json({status:true,data:{message:"Country updated Successfully ",data:dbcountry}})
+    }
+    catch(error){
+        console.log(error)
+        return res.status(500).json({status:false,data:{message:"internal server error",data:error}})
+    }
+}
+//#endregion
+
+//#region 
+const deleteCountry = async(req,res) =>{
+    try{
+        const id = req.params.id
+        const dbcountry = await countrymodal.deleteOne({_id:id})
+        if(dbcountry.deletedCount===0){
+             return res.status(400).json({status:false,data:{message:"Country not found"}})
+        }
+         return res.status(200).json({status:true,data:{message:"Country deleted Successfully ",data:dbcountry}})
+    }   
+    catch(error){
+        return res.status(500).json({status:false,data:{message:"internal server error",data:error}})
+    }
+}
+//#endregion
+module.exports={createCountry,readCountry,updateCountry,deleteCountry}
