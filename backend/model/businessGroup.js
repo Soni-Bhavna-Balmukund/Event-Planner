@@ -4,6 +4,7 @@ const businessgroup = new mongoose.Schema({
     
     gname:{
         type:String,
+        unique:true,
         required:true
     },
     remark:{

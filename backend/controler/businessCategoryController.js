@@ -5,11 +5,12 @@ const addcategory = async(req,res) =>{
  try{
     const category = req.body;
 
-    if(!category){
-        return res.status(400).json({status:false,message:'category not found'})
+    if(!category || !category.gid || !category.cname){
+        return res.status(400).json({status:false,message:'category or group is missing'})
     }
 
-    const groupname = await businessGroup.findOne({gname:category.gname})
+    // const groupname = await businessGroup.findOne({gname:category.gid})
+    const groupname = await businessGroup.findById(category.gid)
     console.log(groupname)
     if(!groupname){
         return res.status(400).json({status:false,message:'Groupname not found'})
@@ -32,7 +33,7 @@ const addcategory = async(req,res) =>{
 //#region read category
 const readAllCategory = async(req,res)=>{
     try{
-        catdb = await businessCategory.find()
+        const catdb = await businessCategory.find().populate('gid', 'gname')
 
         return res.status(200).json({status:true,data:{message:"all category",data:catdb}})
     }
@@ -71,7 +72,7 @@ const deleteCategory = async(req,res) =>{
         const id = req.params.id
         const catdb = await businessCategory.deleteOne({_id:id})
 
-        if(catdb.deletedCount===0){
+        if(catdb.deletedCount===0 || !catdb){
              return res.status(400).json({status:false,data:{message:"Category not found"}})
         }
          return res.status(200).json({status:true,data:{message:"Category deleted successfully",data:catdb}})

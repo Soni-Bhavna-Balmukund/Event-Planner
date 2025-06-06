@@ -30,7 +30,7 @@ const addusertype = async (req, res) => {
 const readusertypes = async (req, res) => {
     try {
         const userdb = await usertype.find()
-        if (!type) {
+        if (!userdb) {
             return res.status(400).json({ status: false, data: { message: "Type Not Valid" } })
         }
         return res.status(200).json({ status: true, data: { message: "All userstypes", data: userdb } })

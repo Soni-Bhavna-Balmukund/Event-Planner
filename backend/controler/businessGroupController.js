@@ -14,6 +14,11 @@ const addgroup = async(req,res) => {
             gname:group.gname,remark:group.remark
         }
 
+        const existingGroup = await businessGroup.findOne({gname:group.gname})
+        if(existingGroup){
+            return res.status(400).json({status:false,data:{message:"Group already exist"}})
+        }
+
         const dbgroup = new businessGroup(groupfields)
 
         await dbgroup.save()

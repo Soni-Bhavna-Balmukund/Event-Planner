@@ -28,3 +28,4 @@ export const getLoginObj = (logindata,handleLoginChange)=>([
      { label: 'Email',name:'email', value: logindata.email, md: 12, type: 'email', onChange: handleLoginChange },
      { label: 'Password',name:'password', value: logindata.password, md: 12, type: 'password', onChange: handleLoginChange },
     ])
+    

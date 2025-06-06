@@ -18,11 +18,11 @@ const AdminHeader = () =>{
   
     return(
         <>
-        <Container fluid className=" px-0 secondary-bg" >
+        <Container fluid className=" px-0 secondary-bg position-sticky top-0 boxShadow z-1" >
             <div className="d-md-block d-none">
             <Row className="align-items-center py-2 px-2 m-0 ">
                 <Col className='col-auto fs-3'>
-                <FaBarsStaggered onClick={()=>dispatch(setSidebar())}   className="d-lg-block d-none " style={{color:'var( --color-text-on-secondary)'}}/>
+                <FaBarsStaggered onClick={()=>dispatch(setSidebar())}   className="d-md-block d-none " style={{color:'var( --color-text-on-secondary)'}}/>
             {/* <FaBarsStaggered onClick={()=>dispatch(setSidebar())}  className='d-lg-none d-block fs-3'  style={{color:'var( --color-text-on-secondary)'}}/> */}
                 </Col>
 
@@ -47,7 +47,7 @@ const AdminHeader = () =>{
         <Row className="m-0 align-items-center pb-2 ">
             <Col xs={12} className="text-center pb-2 pt-1"><img src={logo} alt="" height={50} /></Col>
             <Col className="col-1">
-            <FaBarsStaggered onClick={()=>dispatch(setSidebar())}  className='d-lg-none d-block fs-3'  style={{color:'var( --color-text-on-secondary)'}}/></Col>
+            <FaBarsStaggered onClick={()=>dispatch(setSidebar())}  className='d-md-none d-block fs-3'  style={{color:'var( --color-text-on-secondary)'}}/></Col>
             <Col xs={5}>
                 <Form.Control placeholder="Search" /><FaSearch className="position-absolute" style={{right:'30px','bottom':'50%',transform:'translateY(50%)',color:'var(--color-text-on-secondary)'}}/></Col>
 

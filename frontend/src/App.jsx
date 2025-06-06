@@ -1,7 +1,7 @@
 import './App.css'
 import AdminRoutes from './Routes/AdminRoutes'
 import EnduserRoutes from './Routes/EnduserRoutes'
-
+import VenderRoutes from './Routes/VenderRoutes'
 
 function App() {
   
@@ -9,6 +9,7 @@ function App() {
     <>
       <EnduserRoutes/>
       <AdminRoutes/>
+      <VenderRoutes/>
     </>
   )
 }

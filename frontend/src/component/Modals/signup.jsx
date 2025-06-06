@@ -80,6 +80,9 @@ const Signup = () => {
       if(res.data.data.data.usertype==='680e689c5b145049fc075b4e'){
         navigate('/admin')
       }
+       if(res.data.data.data.usertype==='680e68965b145049fc075b4c'){
+        navigate('/vender')
+      }
       dispatch(authFormModal(null))
       }
       else{

@@ -9,6 +9,9 @@
   --secondary-bg: #f8eae8;
   --color-text-on-secondary: #8e3c50;
   --accent-bg-color: #d6a5ad !important;
+  --primary-font: "Montserrat", sans-serif;
+  --secondary-font: "Parisienne", "Brush Script MT", cursive;
+   
 }
 
 .heightbody {
@@ -32,10 +35,37 @@
 }
 
 .boxShadow{
-  box-shadow: rgb(0, 0,0,.1) 3px 3px 6px 0px inset;
+  box-shadow: rgb(0, 0,0,.1) 3px 3px 6px 0px ;
 }
 .textSecondary{
   color: var(--color-text-on-secondary)!important;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: var(--secondary-bg) !important; 
+ }
+
+.table{
+  --bs-table-striped-bg: rgba(var(--secondary-bg),0) !important;
+}
+.modal-footer button{
+  background-color: var(--color-text-on-secondary);
+  border: 0;
+  padding: 10px 20px !important;
+}
+.modal-footer button:hover{
+  background-color: var(--accent-bg-color);
+}
+.modal-header,.form-label{
+  color: var(--color-text-on-secondary);
+}
+.form-control:focus,.form-control::placeholder{
+  border-color: var(--accent-bg-color) !important;
+  color: var(--primary-bg) !important;
+}
+.modal-header{
+  font-family: var(--primary-font);
 }
 
 @media screen and (max-width: 500px) {
@@ -46,4 +76,10 @@
     cursor: pointer;
     padding: 0;
   }
+}
+
+@media screen and (max-width:768px) {
+  .w-255px{
+  width: 255px!important;
+}
 }

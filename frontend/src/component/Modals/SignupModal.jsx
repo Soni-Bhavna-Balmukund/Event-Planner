@@ -17,8 +17,9 @@ const SignupModal = ({ formdata, handleChange, handleClick }) => {
   const groups = useSelector((state) => state.usertype.grouptype)
   const categories = useSelector((state) => state.usertype.categorytype)
   const filteredCategories = categories.filter(
-    (cat) => cat.gid === formdata.businessgroup
+    (cat) => cat.gid?._id === formdata.businessgroup
   );
+  console.log(filteredCategories)
   const countries = useSelector((state) => state.usertype.country)
   const locations = useSelector((state)=>state.usertype.location)
   const formobj = formdata ? getFormObj(formdata, handleChange, groups, countries,filteredCategories,locations) : {};

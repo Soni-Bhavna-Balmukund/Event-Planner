@@ -5,13 +5,14 @@ import usertypeReducer from './slice/usertype'
 import adminReducer from './slice/AdminSlice'
 import authReducer from './slice/auhSclice'
 
+
 const store = configureStore({
-    reducer:{
-        modal : modalReducer,
+    reducer: {
+        modal: modalReducer,
         toast: toastReducer,
-        usertype:usertypeReducer,
-        admin:adminReducer,
-        auth:authReducer
+        usertype: usertypeReducer,
+        admin: adminReducer,
+        auth: authReducer,
     }
 })
 
