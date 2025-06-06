@@ -15,7 +15,7 @@ const AdminLayout = () => {
                     <Col className={!show ? ('d-md-block col-3 boxShadow    col-lg-2 d-none') : ('d-none')} style={{ backgroundColor: 'var(--secondary-bg)' }}>
                         <AdminSidebar />
                     </Col>
-                    <Col className={!show ? 'col-md-9 col-lg-10  position-relative   py-5 px-4' : 'col-sm-12 position-relative'}>
+                    <Col className={!show ? 'col-md-9 col-lg-10  position-relative   py-5 px-4' : 'col-sm-12 mt-5 position-relative'}>
 
                         <Outlet />
 

@@ -41,7 +41,7 @@ const DeleteCategory = ({ data }) => {
         <div className='d-flex justify-content-between' style={{ color: 'var(--color-text-on-secondary)' }}><p>Category Name :- {data.cname}</p><p>Group Name :- {data.gid.gname}</p></div>
         <Form onSubmit={(e) => { e.preventDefault(); handleDelete() }}>
           <Form.Group>
-            <Form.Label>Type "{data.cname}" for complete the action</Form.Label>
+            <Form.Label className='fw-semibold'>Type "{data.cname}" for complete the action</Form.Label>
             <Form.Control value={del} name='del' onChange={handleDel} placeholder='Enter Category Name shown ablove' />
           </Form.Group>
           <button type='submit' style={{ display: 'none' }}></button>

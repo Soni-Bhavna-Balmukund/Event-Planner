@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const ToastProvider = ({children}) =>{
     const dispatch = useDispatch()
-    const toastState = useSelector((state)=>state.toast)
+    const toastState = useSelector((state)=>state.toast)    
 
     useEffect(()=>{
         if(toastState.message && toastState.type){
@@ -25,7 +25,8 @@ const ToastProvider = ({children}) =>{
                 }
             })
         }
-    },[toastState,dispatch])
+    // },[toastState,dispatch])
+    },[toastState.id]) // 👈 now re-triggers even if message/type are same
     return(
         <>
         {children}

@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import { Form, Modal ,Button} from 'react-bootstrap'
 import { closeAdminModal } from '../../../../store/slice/AdminSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { showtoast } from '../../../../store/slice/toastify'
 import { categorytypes } from '../../../../store/slice/usertype'
@@ -9,6 +9,7 @@ import { categorytypes } from '../../../../store/slice/usertype'
 const EditCategory = ({data}) => {
 
   const dispatch = useDispatch()
+  const group = useSelector((state)=>state.usertype.grouptype)
   const [edit,setEdit] = useState('')
   const handleChange =(e) =>{
     const {value,name} =e.target
@@ -25,6 +26,10 @@ const EditCategory = ({data}) => {
         dispatch(closeAdminModal())
     }
     catch(error){
+       if (!edit.gid) {
+              dispatch( showtoast({ message: "Place Enter Categry name or Select Group Name", type: "error", }));
+              return;
+            }
       dispatch(showtoast({message:error.response.data.data.message,type:'error'}))
     }
   }
@@ -38,6 +43,18 @@ const EditCategory = ({data}) => {
           <Form.Group>
             <Form.Label>Category Name :- {data.cname}</Form.Label>
             <Form.Control value={edit.cname||""} name='cname' placeholder='Enter Category Name' onChange={handleChange}/>
+          </Form.Group>
+
+           <Form.Group>
+                <Form.Label>Select Group</Form.Label>
+          <Form.Select onChange={handleChange} name='gid' value={edit.gid}>
+            <option value="">Select Group</option>
+            {
+                group.map((item, index) => (
+                  <option value={item._id} key={index} >{item.gname}</option>
+                ))
+            }
+          </Form.Select>
           </Form.Group>
       </Modal.Body>
 

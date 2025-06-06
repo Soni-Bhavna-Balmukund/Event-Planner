@@ -4,16 +4,19 @@ const toastSlice= createSlice({
     name:"toast",
     initialState:{
         message:'',
-        type:''
+        type:'',
+        id: null // 👈 add this
     },
     reducers:{
         showtoast(state,action){
             state.message=action.payload.message,
-            state.type=action.payload.type
+            state.type=action.payload.type,
+             state.id = Date.now(); // 👈 always unique
         },
         closetoast(state){
             state.message='',
-            state.type=''
+            state.type='',
+            state.id = null;
         }
     }
 })

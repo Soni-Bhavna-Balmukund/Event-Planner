@@ -68,6 +68,15 @@
   font-family: var(--primary-font);
 }
 
+.btn:focus-visible{
+  background-color: var(--accent-bg-color)!important;
+  border-color: var(--primary-bg)!important;
+  box-shadow: 0px 0px  4px 4px rgba(142,60,80,0.82) !important;
+}
+.offcan svg,.offcan a{
+  color: var(--color-text-on-secondary);
+  text-decoration: none;
+}
 @media screen and (max-width: 500px) {
   .headicon svg{
     font-size: 28px;

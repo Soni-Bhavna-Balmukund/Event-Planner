@@ -7,20 +7,23 @@ import { openAdminModal } from "../../store/slice/AdminSlice";
 import EditBusinessGroup from "./Modal/BusinessGroup/EditBusinessGroup";
 import DeleteBusinessGroup from "./Modal/BusinessGroup/DeleteBusinessGroup";
 import AddGroup from "./Modal/BusinessGroup/AddGroup";
+import { HiViewGridAdd } from "react-icons/hi";
+import AddCountry from "./Modal/Country/AddCountry";
+import DeleteCountry from "./Modal/Country/DeleteCountry";
+import EditCountry from "./Modal/Country/EditCountry";
 
-
-const AddBusinessGroup = () => {
-
-    const group = useSelector((state) => state.usertype.grouptype)
+const Countries = () => {
+    const countries = useSelector((state) => state.usertype.country)
     const { adminModalType,adminModalData } = useSelector((state) => state.admin)
-    console.log(group)
+    console.log(countries)
     const dispatch = useDispatch()
-    return (
-        <>
-            <Container fluid>
-            <div className="d-flex justify-content-between px-4 fw-semibold" style={{color:'var(--primary-bg)'}}><p>All Business Group</p><p>Total Group:- {group.length}</p></div>
+  return (
+     <Container fluid>
+            <div className="d-flex justify-content-between px-4 fw-semibold" style={{color:'var(--primary-bg)'}}><p>All Countries</p><p>Total Countries:- {countries.length}</p></div>
 
-            <div className="text-end py-2 mb-4" style={{background:'var(--accent-bg-color'}}><Button onClick={()=>dispatch(openAdminModal({type:'addGroup'}))} style={{backgroundColor:'var(--secondary-bg)',color:'var(--color-text-on-secondary)',border:'0',marginRight:'15px'}}>Add New Group</Button></div>
+            <div className="text-end py-2 mb-4 d-flex align-items-center justify-content-end" style={{background:'var(--accent-bg-color'}}>
+                <Button className="fs-5 " onClick={()=>dispatch(openAdminModal({type:'addCountry'}))} style={{backgroundColor:'var(--secondary-bg)',color:'var(--color-text-on-secondary)',border:'0',marginRight:'15px'}}><HiViewGridAdd className="fs-4 me-2 "/><span>Add Country</span></Button>
+            </div>
             
             <Container>
                 <Table responsive striped bordered >
@@ -28,13 +31,12 @@ const AddBusinessGroup = () => {
                         <tr className="text-center">
                             <th style={{ width: '8%' }}>Sr.</th>
                             <th style={{ width: '12%' }}>Icon</th>
-                            <th>Business Group</th>
-                            <th style={{ width: '20%' }}>Remark</th>
+                            <th>Countries</th>
                             <th style={{ width: '15%' }}>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {group.map((item, index) => (
+                        {countries.map((item, index) => (
                             <tr key={index} className="text-center hover-table">
                                 <td className="align-middle px-2 ">{index + 1}</td>
                                 <td className="align-middle px-2 ">
@@ -47,29 +49,27 @@ const AddBusinessGroup = () => {
                                             lineHeight: '28px',
                                         }}
                                     >
-                                        {item.gname.charAt(0).toUpperCase()}
+                                        {item.countryname.charAt(0).toUpperCase()}
                                     </p>
                                 </td>
-                                <td className="align-middle px-3 text-start">{item.gname}</td>
-                                <td className="align-middle px-3 ">{item.remark||"---"}</td>
+                                <td className="align-middle px-3 text-start">{item.countryname}</td>
                                 <td className="align-middle fs-4 " style={{ color: 'var(--color-text-on-secondary)' }}>
-                                    <span className="me-2 me-lg-3" onClick={() => dispatch(openAdminModal({type:'editGroup',data:item}))}><FaRegEdit /></span>
-                                    <span onClick={() => dispatch(openAdminModal({type:'deleteGroup',data:item}))}><RiDeleteBin6Line /></span>
+                                    <span className="me-2 me-lg-3" onClick={() => dispatch(openAdminModal({type:'editCountry',data:item}))}><FaRegEdit /></span>
+                                    <span onClick={() => dispatch(openAdminModal({type:'deleteCountry',data:item}))}><RiDeleteBin6Line /></span>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </Table>
 
-                {adminModalType === 'editGroup' && <EditBusinessGroup data={adminModalData}/>}
-                {adminModalType === 'deleteGroup'&& <DeleteBusinessGroup data={adminModalData}/>}
-                {adminModalType === 'addGroup' && <AddGroup/>}
+                {adminModalType === 'editCountry' && <EditCountry data={adminModalData}/>}
+                {adminModalType === 'deleteCountry'&& <DeleteCountry data={adminModalData}/>}
+                {adminModalType === 'addCountry' && <AddCountry/>}
 
                 <SignupUseEffects />
             </Container>
             </Container>
-
-        </>
-    )
+  )
 }
-export default AddBusinessGroup
+
+export default Countries

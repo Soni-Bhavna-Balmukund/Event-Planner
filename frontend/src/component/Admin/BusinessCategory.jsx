@@ -14,8 +14,10 @@ const BusinessCategory =() =>{
     const dispatch = useDispatch()
     return(
         <>
+        <Container fluid>
+             <div className="d-flex justify-content-between px-4 fw-semibold" style={{color:'var(--primary-bg)'}}><p>All Business Category</p><p>Total Category:- {category.length}</p></div>
+
          <div className="text-end py-2 mb-4" style={{background:'var(--accent-bg-color'}}><Button onClick={()=>dispatch(openAdminModal({type:'addCategory'}))} style={{backgroundColor:'var(--secondary-bg)',color:'var(--color-text-on-secondary)',border:'0',marginRight:'15px'}}>Add New Category</Button></div>
-        
             <Container>
                 <Table responsive striped bordered >
                     <thead>
@@ -25,7 +27,7 @@ const BusinessCategory =() =>{
                             <th>Business Category</th>
                             <th style={{ width: '20%' }}>Remark</th>
                             <th style={{ width: '20%' }}>Group</th>
-                            <th style={{ width: '15%' }}>Actions</th>
+                            <th style={{ width: '16%' }}>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,7 +51,7 @@ const BusinessCategory =() =>{
                                 <td className="align-middle px-3 text-start">{item.gid.gname}</td>
 
                                 <td className="align-middle fs-4 " style={{ color: 'var(--color-text-on-secondary)' }}>
-                                    <span className="me-3" onClick={() => dispatch(openAdminModal({type:'editCategory',data:item}))}><FaRegEdit /></span>
+                                    <span className=" me-2 me-lg-3" onClick={() => dispatch(openAdminModal({type:'editCategory',data:item}))}><FaRegEdit /></span>
                                     
                                     <span onClick={() => dispatch(openAdminModal({type:'deleteCategory',data:item}))}><RiDeleteBin6Line /></span>
                                 </td>
@@ -63,6 +65,7 @@ const BusinessCategory =() =>{
                 {adminModalType === 'addCategory' && <AddCategory/>}
 
                 <SignupUseEffects />
+            </Container>
             </Container>
             </>
     )
