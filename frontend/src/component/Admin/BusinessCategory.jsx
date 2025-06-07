@@ -4,12 +4,10 @@ import SignupUseEffects from '../Modals/SignupUseEffects'
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { openAdminModal } from "../../store/slice/AdminSlice";
-import EditCategory from './Modal/BusinessCategory/EditCategory';
-import DeleteCategory from './Modal/BusinessCategory/DeleteCategory';
 import AddCategory from './Modal/BusinessCategory/AddCategory';
 
 const BusinessCategory =() =>{
-    const {adminModalData,adminModalType} = useSelector((state)=>state.admin)
+    const {adminModalData,adminModalType,modelopen} = useSelector((state)=>state.admin)
     const category = useSelector((state)=>state.usertype.categorytype)
     const dispatch = useDispatch()
     return(
@@ -17,7 +15,7 @@ const BusinessCategory =() =>{
         <Container fluid>
              <div className="d-flex justify-content-between px-4 fw-semibold" style={{color:'var(--primary-bg)'}}><p>All Business Category</p><p>Total Category:- {category.length}</p></div>
 
-         <div className="text-end py-2 mb-4" style={{background:'var(--accent-bg-color'}}><Button onClick={()=>dispatch(openAdminModal({type:'addCategory'}))} style={{backgroundColor:'var(--secondary-bg)',color:'var(--color-text-on-secondary)',border:'0',marginRight:'15px'}}>Add New Category</Button></div>
+         <div className="text-end py-2 mb-4" style={{background:'var(--accent-bg-color'}}><Button onClick={()=>dispatch(openAdminModal({type:'addCategory',openmodel:'addCategory'}))} style={{backgroundColor:'var(--secondary-bg)',color:'var(--color-text-on-secondary)',border:'0',marginRight:'15px'}}>Add New Category</Button></div>
             <Container>
                 <Table responsive striped bordered >
                     <thead>
@@ -51,18 +49,17 @@ const BusinessCategory =() =>{
                                 <td className="align-middle px-3 text-start">{item.gid.gname}</td>
 
                                 <td className="align-middle fs-4 " style={{ color: 'var(--color-text-on-secondary)' }}>
-                                    <span className=" me-2 me-lg-3" onClick={() => dispatch(openAdminModal({type:'editCategory',data:item}))}><FaRegEdit /></span>
+                                    <span className=" me-2 me-lg-3" onClick={() => dispatch(openAdminModal({type:'addCategory',data:item,openmodel:'editCategory'}))}><FaRegEdit /></span>
                                     
-                                    <span onClick={() => dispatch(openAdminModal({type:'deleteCategory',data:item}))}><RiDeleteBin6Line /></span>
+                                    <span onClick={() => dispatch(openAdminModal({type:'addCategory',data:item,openmodel:'deleteCategory'}))}><RiDeleteBin6Line /></span>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </Table>
 
-                {adminModalType === 'editCategory' && <EditCategory data={adminModalData}/>}
-                {adminModalType === 'deleteCategory'&& <DeleteCategory data={adminModalData}/>}
-                {adminModalType === 'addCategory' && <AddCategory/>}
+                {adminModalType === 'addCategory' && <AddCategory data={adminModalData} modelopen={modelopen}/>}
+             
 
                 <SignupUseEffects />
             </Container>

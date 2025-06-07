@@ -4,23 +4,21 @@ import SignupUseEffects from '../Modals/SignupUseEffects'
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { openAdminModal } from "../../store/slice/AdminSlice";
-import EditBusinessGroup from "./Modal/BusinessGroup/EditBusinessGroup";
-import DeleteBusinessGroup from "./Modal/BusinessGroup/DeleteBusinessGroup";
-import AddGroup from "./Modal/BusinessGroup/AddGroup";
+
+import AddGroup from "./Modal/AddGroup";
 
 
 const AddBusinessGroup = () => {
 
     const group = useSelector((state) => state.usertype.grouptype)
-    const { adminModalType,adminModalData } = useSelector((state) => state.admin)
-    console.log(group)
+    const { adminModalType,adminModalData,modelopen } = useSelector((state) => state.admin)
     const dispatch = useDispatch()
     return (
         <>
             <Container fluid>
             <div className="d-flex justify-content-between px-4 fw-semibold" style={{color:'var(--primary-bg)'}}><p>All Business Group</p><p>Total Group:- {group.length}</p></div>
 
-            <div className="text-end py-2 mb-4" style={{background:'var(--accent-bg-color'}}><Button onClick={()=>dispatch(openAdminModal({type:'addGroup'}))} style={{backgroundColor:'var(--secondary-bg)',color:'var(--color-text-on-secondary)',border:'0',marginRight:'15px'}}>Add New Group</Button></div>
+            <div className="text-end py-2 mb-4" style={{background:'var(--accent-bg-color'}}><Button onClick={()=>dispatch(openAdminModal({type:'addGroup',openmodel:'addGroup'}))} style={{backgroundColor:'var(--secondary-bg)',color:'var(--color-text-on-secondary)',border:'0',marginRight:'15px'}}>Add New Group</Button></div>
             
             <Container>
                 <Table responsive striped bordered >
@@ -53,18 +51,16 @@ const AddBusinessGroup = () => {
                                 <td className="align-middle px-3 text-start">{item.gname}</td>
                                 <td className="align-middle px-3 ">{item.remark||"---"}</td>
                                 <td className="align-middle fs-4 " style={{ color: 'var(--color-text-on-secondary)' }}>
-                                    <span className="me-2 me-lg-3" onClick={() => dispatch(openAdminModal({type:'editGroup',data:item}))}><FaRegEdit /></span>
-                                    <span onClick={() => dispatch(openAdminModal({type:'deleteGroup',data:item}))}><RiDeleteBin6Line /></span>
+                                    <span className="me-2 me-lg-3" onClick={() => dispatch(openAdminModal({type:'addGroup',openmodel:'editGroup',data:item}))}><FaRegEdit /></span>
+                                    <span onClick={() => dispatch(openAdminModal({type:'addGroup',data:item,openmodel:'delGroup'}))}><RiDeleteBin6Line /></span>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </Table>
 
-                {adminModalType === 'editGroup' && <EditBusinessGroup data={adminModalData}/>}
-                {adminModalType === 'deleteGroup'&& <DeleteBusinessGroup data={adminModalData}/>}
-                {adminModalType === 'addGroup' && <AddGroup/>}
-
+                {adminModalType === 'addGroup' && <AddGroup data={adminModalData} modelopen={modelopen}/> }
+               
                 <SignupUseEffects />
             </Container>
             </Container>

@@ -6,6 +6,7 @@ const AdminSlice = createSlice({
         sidebar:false,
         adminModalType:null,
         adminModalData:null,
+        modelopen:null,
     },
     reducers:{
         setSidebar:(state)=>{
@@ -13,12 +14,15 @@ const AdminSlice = createSlice({
         },
         openAdminModal:(state,actions)=>{
             state.adminModalType = actions.payload.type,
-            state.adminModalData = actions.payload.data
+            state.adminModalData = actions.payload.data,
+            state.modelopen=actions.payload.openmodel
         },
         closeAdminModal:(state)=>{
             state.adminModalData=null,
             state.adminModalType=null
-        }
+            state.modelopen=null
+        },
+      
     }
 })
 
