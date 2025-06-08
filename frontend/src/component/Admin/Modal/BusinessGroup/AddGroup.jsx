@@ -39,7 +39,6 @@ const AddGroup = ({ data, modelopen }) => {
             else if(modelopen==='delGroup'){
                 if (del === data.gname) {
                     const res = await axios.delete(`http://localhost:5000/businessgroup/deleteGroup/${data._id}`)
-                    console.log('first')
                     dispatch(showtoast({ message: res.data.data.message, type: 'success' }))
                 }
             }

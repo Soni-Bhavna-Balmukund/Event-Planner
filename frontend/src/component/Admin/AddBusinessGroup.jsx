@@ -5,7 +5,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { openAdminModal } from "../../store/slice/AdminSlice";
 
-import AddGroup from "./Modal/AddGroup";
+import AddGroup from "./Modal/BusinessGroup/AddGroup";
 
 
 const AddBusinessGroup = () => {
