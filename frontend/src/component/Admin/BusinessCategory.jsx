@@ -5,13 +5,14 @@ import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { openAdminModal } from "../../store/slice/AdminSlice";
 import AddCategory from './Modal/BusinessCategory/AddCategory';
+import DeleteCategory from './Modal/BusinessCategory/DeleteCategory';
 
 const BusinessCategory =() =>{
     const {adminModalData,adminModalType,modelopen} = useSelector((state)=>state.admin)
     const category = useSelector((state)=>state.usertype.categorytype)
     const dispatch = useDispatch()
     return(
-        <>
+        <> 
         <Container fluid>
              <div className="d-flex justify-content-between px-4 fw-semibold" style={{color:'var(--primary-bg)'}}><p>All Business Category</p><p>Total Category:- {category.length}</p></div>
 
@@ -51,7 +52,7 @@ const BusinessCategory =() =>{
                                 <td className="align-middle fs-4 " style={{ color: 'var(--color-text-on-secondary)' }}>
                                     <span className=" me-2 me-lg-3" onClick={() => dispatch(openAdminModal({type:'addCategory',data:item,openmodel:'editCategory'}))}><FaRegEdit /></span>
                                     
-                                    <span onClick={() => dispatch(openAdminModal({type:'addCategory',data:item,openmodel:'deleteCategory'}))}><RiDeleteBin6Line /></span>
+                                    <span onClick={() => dispatch(openAdminModal({type:'deleteCategory',data:item,openmodel:'deleteCategory'}))}><RiDeleteBin6Line /></span>
                                 </td>
                             </tr>
                         ))}
@@ -59,6 +60,7 @@ const BusinessCategory =() =>{
                 </Table>
 
                 {adminModalType === 'addCategory' && <AddCategory data={adminModalData} modelopen={modelopen}/>}
+                {adminModalType === 'deleteCategory' && <DeleteCategory data={adminModalData} modelopen={modelopen}/>}
              
 
                 <SignupUseEffects />

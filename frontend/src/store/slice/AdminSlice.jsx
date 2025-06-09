@@ -7,6 +7,8 @@ const AdminSlice = createSlice({
         adminModalType:null,
         adminModalData:null,
         modelopen:null,
+        userroles:[],
+        statesdata:[]
     },
     reducers:{
         setSidebar:(state)=>{
@@ -22,9 +24,16 @@ const AdminSlice = createSlice({
             state.adminModalType=null
             state.modelopen=null
         },
+        Userrole:(state,actions)=>{
+            state.userroles = actions.payload
+        },
+        setStatedata:(state,actions)=>{
+            state.statesdata = actions.payload
+        }
+
       
     }
 })
 
-export const {setSidebar,openAdminModal,closeAdminModal} = AdminSlice.actions
+export const {setSidebar,openAdminModal,closeAdminModal,Userrole,setStatedata} = AdminSlice.actions
 export default AdminSlice.reducer

@@ -79,16 +79,16 @@ const updateUsertype = async (req, res) => {
     try {
         const id = req.params.id
         const type = req.body
-        if (!type) {
-            return res.status(400).json({ status: false, data: { message: "Type Not Valid" } })
-        }
+        // if (!type) {
+        //     return res.status(400).json({ status: false, data: { message: "Type Not Valid" } })
+        // }
         const typefield = { userrole: type.userrole }
         const userdb = await usertype.updateOne({ _id: id }, typefield)
 
         if (!type || userdb.matchedCount === 0) {
             return res.status(400).json({ status: false, data: { message: "Type Not Valid" } })
         }
-        return res.status(200).json({ message: "Usertype updated Successfully", data: userdb })
+        return res.status(200).json({ status:true,data:{ message: "Usertype updated Successfully", data: userdb }})
     }
     catch (error) {
         return res.status(500).json({ status: false, data: { message: "Internal server error", data: error } })

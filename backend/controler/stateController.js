@@ -1,21 +1,26 @@
 const stateModals = require("../model/stateModal")
-
+const countrymodal = require('../model/countrymodal')
 //#region add state
 const addStates = async (req, res) => {
     try {
 
         const state = req.body
-        if (!state) {
+        if (!state || !state.countryid ) {
             return res.status(400).json({ status: false, data: { message: "state not found" } })
         }
+        const country = await countrymodal.findById(state.countryid)
+         if(!country){
+        return res.status(400).json({status:false,message:'country not found'})
+    }
 
-        const statefield = { sname: state.sname, countryid: state.countryid }
+        const statefield = { sname: state.sname, countryid: country._id }
 
         const dbstate = new stateModals(statefield)
         await dbstate.save()
 
         return res.status(200).json({ status: true, data: { message: 'State added Successfully', data: dbstate } })
     } catch (error) {
+        console.log(error)
         return res.status(500).json({ status: false, data: { message: 'Internal server error', data: error } })
     }
 }
@@ -24,7 +29,7 @@ const addStates = async (req, res) => {
 //#region read state
 const readState = async (req, res) => {
     try {
-        const dbstate = await stateModals.find()
+        const dbstate = await stateModals.find().populate('countryid','countryname')
         return res.status(200).json({ status: true, data: { message: 'All states', data: dbstate } })
     }
     catch (error) {

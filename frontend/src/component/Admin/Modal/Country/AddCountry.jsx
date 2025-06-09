@@ -27,18 +27,15 @@ const AddCountry = ({ data, modelopen }) => {
         try {
             if (modelopen === 'addCountry') {
                 const res = await axios.post('http://localhost:5000/country', countryName)
-                console.log('group added', res.data.data.message)
                 dispatch(showtoast({ message: res.data.data.message, type: 'success' }))
             }
             else if (modelopen === 'editCountry') {
                 const res = await axios.put(`http://localhost:5000/country/updateCountry/${data._id}`, countryName)
                 dispatch(showtoast({ message: res.data.data.message, type: 'success' }))
-                console.log(res.data.data.message, 'edit')
             }
             else if(modelopen==='deleteCountry'){
                 if (del === data.countryname) {
                     const res = await axios.delete(`http://localhost:5000/country/deleteCountry/${data._id}`)
-                    console.log('first')
                     dispatch(showtoast({ message: res.data.data.message, type: 'success' }))
                 }
             }

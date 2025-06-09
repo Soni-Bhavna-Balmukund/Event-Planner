@@ -10,11 +10,11 @@ import { categorytypes } from "../../../../store/slice/usertype";
 const AddCategory = ({ data, modelopen }) => {
   const group = useSelector((state) => state.usertype.grouptype);
   const dispatch = useDispatch();
-  console.log(data, 'kk', modelopen, 'mm')
+
   const initialCat = {
     cname: "",
     gid: "",
-    remark: "",
+    remark: "", 
   };
   const [catdata, setCatData] = useState(initialCat);
   const [edit,setEdit] = useState('')
@@ -24,12 +24,6 @@ const AddCategory = ({ data, modelopen }) => {
     setCatData({ ...catdata, [name]: value });
     setEdit({...edit,[name]:value})
   };
-
-  const [del, setDel] = useState('')
-
-  const handleDel = (e) => {
-    setDel(e.target.value)
-  }
 
   const handleAdd = async () => {
     try {
@@ -43,14 +37,7 @@ const AddCategory = ({ data, modelopen }) => {
         const res = await axios.put(`http://localhost:5000/businesscategory/updateCategory/${data._id}`, edit)
         dispatch(showtoast({ message: res.data.data.message, type: 'success' }))
       }
-      else if (modelopen === 'deleteCategory') {
-        console.log(catdata.cname, data.cname, del, 'jk')
-        if (del === data.cname) {
-          const res = await axios.delete(`http://localhost:5000/businesscategory/deleteCategory/${data._id}`)
-          dispatch(showtoast({ message: res.data.data.message, type: 'success' }))
-        }
-      }
-
+     
       dispatch(closeAdminModal());
       const updatedList = await axios.get("http://localhost:5000/businesscategory/allBusinessCategory");
       dispatch(categorytypes(updatedList.data.data.data));
@@ -67,12 +54,12 @@ const AddCategory = ({ data, modelopen }) => {
   return (
     <Modal show={true} onHide={() => dispatch(closeAdminModal())}>
       <Modal.Header closeButton>
-        <Modal.Title>{(modelopen === 'addCategory') ? 'Add Category' : (modelopen === 'editCategory') ? 'Edit Category' : 'Delete Category'}</Modal.Title>
+        <Modal.Title>{(modelopen === 'addCategory') ? 'Add Category' :  'Edit Category' }</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           {
-            (modelopen === 'addCategory') ? (<>
+            (modelopen === 'addCategory') && (<>
               <Form.Group>
                 <Form.Label>Enter Business Category Name</Form.Label>
                 <Form.Control
@@ -80,8 +67,7 @@ const AddCategory = ({ data, modelopen }) => {
                   onChange={handleChange}
                   name="cname"
                   value={catdata.cname || ""}
-                  autoFocus
-                />
+                  autoFocus />
               </Form.Group>
 
               <Form.Group>
@@ -95,7 +81,8 @@ const AddCategory = ({ data, modelopen }) => {
                   ))}
                 </Form.Select>
               </Form.Group>
-            </>) : (modelopen === 'editCategory') ? (<>
+            </>) }
+            {(modelopen === 'editCategory') && (<>
               <Form.Group>
                 <Form.Label>Category Name :- {data.cname}</Form.Label>
                 <Form.Control value={edit.cname || ""} name='cname' placeholder='Enter Category Name' onChange={handleChange} autoFocus/>
@@ -105,39 +92,24 @@ const AddCategory = ({ data, modelopen }) => {
                 <Form.Label>Select Group</Form.Label>
                 <Form.Select onChange={handleChange} name='gid' value={edit.gid}>
                   <option value="">Select Group</option>
-                  {
-                    group.map((item, index) => (
+                  { group.map((item, index) => (
                       <option value={item._id} key={index} >{item.gname}</option>
-                    ))
-                  }
+                    )) }
                 </Form.Select>
               </Form.Group>
-            </>) :(<>
-              <div className='d-flex justify-content-between' style={{ color: 'var(--color-text-on-secondary)' }}><p>Category Name :- {data.cname}</p><p>Group Name :- {data.gid.gname}</p></div>
-              <Form.Group>
-                <Form.Label className='fw-semibold'>Type "{data.cname}" for complete the action</Form.Label>
-                <Form.Control autoFocus value={del} name='del' onChange={handleDel} placeholder='Enter Category Name shown ablove' />
-              </Form.Group>
-            </>)
-          }
+            </>) }
                      <button type="submit" style={{ display: 'none' }}></button>
-
         </Form>
         <SignupUseEffects />
       </Modal.Body>
       <Modal.Footer>
-        {(modelopen === 'addCategory' || modelopen === 'editCategory') ? (
-
+        {(modelopen === 'addCategory' || modelopen === 'editCategory') && (
           <Button className="me-4" onClick={handleAdd} type="submit">
             Save
-          </Button>
-        ) : (
-          <Button className="me-4 bg-danger" onClick={handleAdd} type='submit' disabled={data.cname !== del}>Delete</Button>
-        )}
+          </Button> ) }
         <Button onClick={() => dispatch(closeAdminModal())}>cancle</Button>
       </Modal.Footer>
     </Modal>
   );
 };
-
 export default AddCategory;

@@ -10,14 +10,14 @@ import AddCountry from "./Modal/Country/AddCountry";
 
 const Countries = () => {
     const countries = useSelector((state) => state.usertype.country)
+    
     const { adminModalType,adminModalData ,modelopen} = useSelector((state) => state.admin)
-    console.log(countries)
     const dispatch = useDispatch()
   return (
      <Container fluid>
             <div className="d-flex justify-content-between px-4 fw-semibold" style={{color:'var(--primary-bg)'}}><p>All Countries</p><p>Total Countries:- {countries.length}</p></div>
 
-            <div className="text-end py-2 mb-4 d-flex align-items-center justify-content-end" style={{background:'var(--accent-bg-color'}}>
+            <div className="text-end py-2 mb-4 d-flex align-items-center justify-content-end" style={{background:'var(--accent-bg-color)'}}>
                 <Button className="fs-5 " onClick={()=>dispatch(openAdminModal({type:'addCountry',openmodel:'addCountry'}))} style={{backgroundColor:'var(--secondary-bg)',color:'var(--color-text-on-secondary)',border:'0',marginRight:'15px'}}><HiViewGridAdd className="fs-4 me-2 "/><span>Add Country</span></Button>
             </div>
             
@@ -45,7 +45,7 @@ const Countries = () => {
                                             lineHeight: '28px',
                                         }}
                                     >
-                                        {item.countryname.charAt(0).toUpperCase()}
+                                        {item.countryname?.charAt(0)?.toUpperCase()}
                                     </p>
                                 </td>
                                 <td className="align-middle px-3 text-start">{item.countryname}</td>
