@@ -48,8 +48,7 @@ const AddCategory = ({ data, modelopen }) => {
         dispatch(showtoast({ message: "Place Enter Categry name or Select Group Name", type: "error", }));
         return;
       }}
-      dispatch(showtoast({ message: error.response.data.data.message, type: "error" }));
-    }
+      dispatch(showtoast({ message: error.response.data.data.message, type: "error" })); }
   };
   return (
     <Modal show={true} onHide={() => dispatch(closeAdminModal())}>

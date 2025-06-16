@@ -39,7 +39,7 @@ const createLocations = async(req,res) => {
 //#region read all location
 const allLocation = async(req,res) =>{
     try{
-      const  dblocation = await LocationModal.find()
+      const  dblocation = await LocationModal.find().populate('state','sname').populate('country','countryname')
       if(!dblocation){
          return res.status(400).json({status:false,data:{message:"Location not found"}})
       }

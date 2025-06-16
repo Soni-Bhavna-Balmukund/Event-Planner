@@ -8,6 +8,7 @@ import States from "../component/Admin/States"
 import Cities from "../component/Admin/Cities"
 import Usertypes from "../component/Admin/Usertypes"
 import Users from "../component/Admin/Users"
+import UserInfo from "../component/Vender/UserInfo"
 
 const AdminRoutes = () =>{
     return(
@@ -22,6 +23,7 @@ const AdminRoutes = () =>{
                 <Route path='cities' element={<Cities/>}></Route>
                 <Route path='usertypes' element={<Usertypes/>}></Route>
                 <Route path='users' element={<Users/>}></Route>
+                <Route path="userinfo" element={<UserInfo/>}/>
                 </Route>
             </Routes>
         </>

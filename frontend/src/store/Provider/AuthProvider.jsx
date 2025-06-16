@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { authState } from "../slice/auhSclice"
+import { authState, authUser } from "../slice/auhSclice"
 
 const AuthProvider = ({children}) =>{
     const dispatch = useDispatch()
@@ -22,7 +22,9 @@ const AuthProvider = ({children}) =>{
                 const res = await axios.post('http://localhost:5000/users/authverify',{},config)
 
                 if(res.data.status){
-                    dispatch(authState(res.data.data.data))
+                    // dispatch(authState(res.data.data.data))
+                    dispatch(authState())
+                    dispatch(authUser(res.data.data.data))
                 }else{
                     localStorage.removeItem('token')
                 }

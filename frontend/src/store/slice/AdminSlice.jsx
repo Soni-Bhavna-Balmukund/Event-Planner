@@ -8,7 +8,10 @@ const AdminSlice = createSlice({
         adminModalData:null,
         modelopen:null,
         userroles:[],
-        statesdata:[]
+        statesdata:[],
+        citiesdata:[],
+        users:[],
+        totalUserRoles:[]
     },
     reducers:{
         setSidebar:(state)=>{
@@ -29,11 +32,18 @@ const AdminSlice = createSlice({
         },
         setStatedata:(state,actions)=>{
             state.statesdata = actions.payload
+        },
+        setCitiesData:(state,actions)=>{
+            state.citiesdata = actions.payload
+        },
+        setUsers:(state,actions)=>{
+            state.users = actions.payload
+        },
+        setUSerRoles:(state,actions)=>{
+            state.totalUserRoles = actions.payload
         }
-
-      
     }
 })
 
-export const {setSidebar,openAdminModal,closeAdminModal,Userrole,setStatedata} = AdminSlice.actions
+export const {setSidebar,openAdminModal,closeAdminModal,Userrole,setStatedata,setCitiesData,setUsers,setUSerRoles} = AdminSlice.actions
 export default AdminSlice.reducer

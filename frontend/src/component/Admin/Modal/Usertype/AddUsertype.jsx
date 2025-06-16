@@ -4,12 +4,12 @@ import { useDispatch } from "react-redux"
 import { useState } from "react"
 import axios from "axios"
 import { showtoast } from "../../../../store/slice/toastify"
+import { current } from "@reduxjs/toolkit"
+
 
 const AddUsertype = ({ data, modelopen }) => {
     const dispatch = useDispatch()
-    // const Usertypedata = {
-    //     userrole: "",
-    // }
+   
     const [usertypeName, setUsertypeName] = useState('')
 
     const handleChange = (e) => {
@@ -59,18 +59,19 @@ const AddUsertype = ({ data, modelopen }) => {
             </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={(e) => { e.preventDefault(); handleAdd(); }}>
+                    
                         {modelopen === 'addUsertype' ? (
                             <>
                                 <Form.Group>
                                     <Form.Label>Usertype Name : </Form.Label>
-                                    <Form.Control placeholder="Enter Usertype Name" name="userrole" value={usertypeName.userrole || ""} onChange={handleChange} autoFocus />
+                                    <Form.Control placeholder="Enter Usertype Name" name="userrole" value={current.userrole || ""} onChange={handleChange} autoFocus />
                                 </Form.Group>
                                </>
                         ) : (modelopen === 'editUsertype') ? (
                             <>
                                 <Form.Group>
                                     <Form.Label>Usertype Name : {data.userrole}</Form.Label>
-                                    <Form.Control onChange={handleChange} placeholder={`Edit Usertype ${data.userrole}`} value={usertypeName.userrole || ""} name="userrole" autoFocus />
+                                    <Form.Control onChange={handleChange} placeholder={`Edit Usertype ${data.userrole}`} value={current.userrole || ""} name="userrole" autoFocus />
                                 </Form.Group>
                              
                                 </>

@@ -16,7 +16,7 @@ const VenderLayout = () => {
                     <Col className={!show ? ('d-md-block col-3 col-lg-2 boxShadow d-none') : ('d-none')} style={{ backgroundColor: 'var(--secondary-bg)' }}>
                         <VenderSidebar />
                     </Col>
-                    <Col className={!show ? 'col-md-9 col-lg-10 bg-primary position-relative   ' : 'col-sm-12 position-relative bg-secondary'} >
+                    <Col className={!show ? 'col-md-9 col-lg-10 position-relative   ' : 'col-sm-12 position-relative'} >
 
                         <Outlet />
 

@@ -13,6 +13,7 @@ const authSlice = createSlice({
         },
         authUser:(state,action)=>{
             state.user=action.payload
+            console.log(state.user,'auth')
         },
         clearAuth:(state)=>{
             state.auth = false,

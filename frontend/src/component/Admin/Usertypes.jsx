@@ -10,7 +10,6 @@ import UseEffectsFile from "./UseEffectsFile";
 
 const Usertypes = () => {
     const usertype = useSelector((state) => state.admin.userroles)
-    console.log(usertype,'dfe')
     const { adminModalType,adminModalData ,modelopen} = useSelector((state) => state.admin)
     const dispatch = useDispatch()
   return (
@@ -48,7 +47,7 @@ const Usertypes = () => {
                                         {item.userrole.charAt(0).toUpperCase()}
                                     </p>
                                 </td>
-                                <td className="align-middle px-3 text-start">{item.userrole}</td>
+                                <td className="align-middle px-3 text-start">{item?.userrole || '--N/A--'}</td>
                                 <td className="align-middle fs-4 " style={{ color: 'var(--color-text-on-secondary)' }}>
                                     <span className="me-2 me-lg-3" onClick={() => dispatch(openAdminModal({type:'addUsertype',data:item,openmodel:'editUsertype'}))}><FaRegEdit /></span>
                                     <span onClick={() => dispatch(openAdminModal({type:'addUsertype',data:item,openmodel:'deleteUsertype'}))}><RiDeleteBin6Line /></span>

@@ -48,7 +48,7 @@ const AddBusinessGroup = () => {
                                         {item.gname.charAt(0).toUpperCase()}
                                     </p>
                                 </td>
-                                <td className="align-middle px-3 text-start">{item.gname}</td>
+                                <td className="align-middle px-3 text-start">{item ?.gname || '--N/A--'}</td>
                                 <td className="align-middle px-3 ">{item.remark||"---"}</td>
                                 <td className="align-middle fs-4 " style={{ color: 'var(--color-text-on-secondary)' }}>
                                     <span className="me-2 me-lg-3" onClick={() => dispatch(openAdminModal({type:'addGroup',openmodel:'editGroup',data:item}))}><FaRegEdit /></span>

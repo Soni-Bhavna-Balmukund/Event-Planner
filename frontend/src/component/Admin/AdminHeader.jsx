@@ -1,4 +1,4 @@
-import { Button ,Container,Row,Col, Form} from "react-bootstrap"
+import { Button ,Container,Row,Col, Form,Dropdown,DropdownButton} from "react-bootstrap"
 import {useDispatch,useSelector} from 'react-redux'
 import { setSidebar } from "../../store/slice/AdminSlice"
 import { FaBarsStaggered } from "react-icons/fa6";
@@ -12,6 +12,7 @@ import { BsFullscreen } from "react-icons/bs";
 import { BsFullscreenExit } from "react-icons/bs";
 import { IoMailOutline } from "react-icons/io5";
 import userprofile from '../../assets/images/userimg5.png'
+import {Link} from 'react-router-dom'
 
 const AdminHeader = () =>{
     const dispatch = useDispatch()
@@ -24,7 +25,7 @@ const AdminHeader = () =>{
                 <Col className='col-auto fs-3'>
                 <FaBarsStaggered onClick={()=>dispatch(setSidebar())}   className="d-md-block d-none " style={{color:'var( --color-text-on-secondary)'}}/>
             {/* <FaBarsStaggered onClick={()=>dispatch(setSidebar())}  className='d-lg-none d-block fs-3'  style={{color:'var( --color-text-on-secondary)'}}/> */}
-                </Col>
+                </Col> 
 
                 <Col className="col-md-2"><img src={logo} alt="" className="img-fluid w-100"/></Col>
 
@@ -39,7 +40,16 @@ const AdminHeader = () =>{
                 <MdOutlineDarkMode />
                 <FaRegBell />
                 <CiSettings className="settingicon"/>
-                <img src={userprofile} alt="" width={40} className="img-fluid rounded-circle "/>
+                
+                 <Dropdown>
+                    <Dropdown.Toggle as='div'  style={{ cursor: "pointer", display: "inline-block" }}><img src={userprofile} alt="" width={40} className="img-fluid rounded-circle "/></Dropdown.Toggle>
+                     <Dropdown.Menu>
+                        <Link to='userinfo'>User Infor</Link>
+        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+      </Dropdown.Menu>
+                 </Dropdown>
                 </Col>
             </Row></div>
         <div >
@@ -60,9 +70,6 @@ const AdminHeader = () =>{
                 <img src={userprofile} alt="" width={40} className="img-fluid rounded-circle "/>
                 </Col>
         </Row></div>
-            
-            {/* </Row>
-        <div > */}
 
        </div></Container>
         </>

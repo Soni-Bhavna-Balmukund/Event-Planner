@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect } from "react"
-import { setStatedata, Userrole } from "../../store/slice/AdminSlice";
+import { setCitiesData, setStatedata, setUSerRoles, setUsers, Userrole } from "../../store/slice/AdminSlice";
 import { useDispatch } from "react-redux";
 
 const UseEffectsFile = () => {
@@ -20,6 +20,19 @@ const UseEffectsFile = () => {
     fetchUserTypes()
   }, [])
 
+  useEffect(()=>{
+     const fetchUserTypes = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/usertype/readUsertypes');
+        const types = res.data.data.data;
+        dispatch(setUSerRoles(types)); 
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchUserTypes()
+  },[])
+
 
   useEffect(() => {
     const fetchState = async () => {
@@ -30,10 +43,36 @@ const UseEffectsFile = () => {
       } catch (error) {
         console.log(error)
       }
-
     }
     fetchState()
   }, [])
+
+  useEffect(()=>{
+    const fetchCities = async() =>{
+      try{
+      const res = await axios.get('http://localhost:5000/locations/allLocation')
+      const city = res.data.data.data
+      dispatch(setCitiesData(city))
+      }catch(error){
+        console.log(error)
+      }
+    }
+    fetchCities()
+  },[])
+
+  useEffect(()=>{
+      const fetchUser =async() =>{
+      try{
+      const res = await axios.get('http://localhost:5000/users/readuser')
+      const data = res.data.data.data
+      dispatch(setUsers(data))
+      }
+      catch(error){
+        console.log(error)
+      }
+    }
+    fetchUser()
+  },[])
 
   return null
 }

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { custtypes } from "../../store/slice/usertype"
 import SignupUseEffects from "./SignupUseEffects"
+import UseEffectsFile from "../Admin/UseEffectsFile"
 
 const SignupModal = ({ formdata, handleChange, handleClick }) => {
 
@@ -21,10 +22,12 @@ const SignupModal = ({ formdata, handleChange, handleClick }) => {
   );
   console.log(filteredCategories)
   const countries = useSelector((state) => state.usertype.country)
+  const state = useSelector((state)=>state.admin.statesdata)
   const locations = useSelector((state)=>state.usertype.location)
-  const formobj = formdata ? getFormObj(formdata, handleChange, groups, countries,filteredCategories,locations) : {};
+  const formobj = formdata ? getFormObj(formdata, handleChange, groups, countries,state,filteredCategories,locations) : {};
   const [custtype, setcusttype] = useState([])
   const selectedRole = useSelector((state) => state.usertype.selectedRole)
+console.log(state,'ss')
 
   useEffect(() => {
     const fetchUserTypes = async () => {
@@ -66,7 +69,7 @@ const SignupModal = ({ formdata, handleChange, handleClick }) => {
                 return shouldRender && (
                   <Col key={index} md={item.md} className="">
                     <Form.Group>
-                      {item.type === 'select' ? (<><SignupUseEffects />
+                      {item.type === 'select' ? (<><SignupUseEffects /><UseEffectsFile/>
                         <Form.Label style={{ color: 'var(--color-text-on-secondary)' }}>{item.label}</Form.Label>
                         <Form.Select
                           {...item}

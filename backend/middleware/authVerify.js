@@ -14,12 +14,23 @@ const Auth =async(req,res,next) =>{
         //decrept the token
 
         const user = JWT.verify(token,JWT_SECRET)
-        console.log(user)
+        console.log(user,'decoded')
         if(!user){
             return res.status(400).json({status:false,data:{message:'Invalide Token'}})
         }
 
-        const dbuser = await usermodal.findById({_id:user.id}).select('-password')
+        // const dbuser = await usermodal.findById({_id:user.id}).select('-password')
+
+        
+    const dbuser = await usermodal.findById(user.id)
+      .select('-password')
+      .populate('businessgroup', 'gname remark').populate('businesscategory',' cname gid remark').populate('country', 'countryname').populate('eventlocation', 'locationName state country').populate('state', 'sname countryid').populate('usertype', 'userrole')
+    //   .populate("businessgroup", "gname")
+    //   .populate("businesscategory", "cname gid")
+    //   .populate("country", "countryname")
+    //   .populate("state", "sname")
+    //   .populate("usertype", "userrole");
+
         console.log(dbuser)
         if(!dbuser){
             return res.status(400).json({status:false,data:{message:'UnAuthorized Access'}})

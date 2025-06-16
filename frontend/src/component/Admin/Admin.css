@@ -77,6 +77,19 @@
   color: var(--color-text-on-secondary);
   text-decoration: none;
 }
+.userinfo span{
+  display: inline-block;
+  margin-bottom: 12px;
+color: var(--color-text-on-secondary) ;
+}
+.loggedUserinfo{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.loggedUserinfo div span:first-of-type {
+  font-weight: 600;
+}
 @media screen and (max-width: 500px) {
   .headicon svg{
     font-size: 28px;

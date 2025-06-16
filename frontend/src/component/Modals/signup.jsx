@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { showtoast } from "../../store/slice/toastify";
 import { setSelectedRole } from "../../store/slice/usertype";
 import { authFormModal } from "../../store/slice/modalSlice";
-import { authState } from "../../store/slice/auhSclice";
+import { authState, authUser } from "../../store/slice/auhSclice";
 import { useNavigate } from "react-router";
 
 const initialdata = {
@@ -72,23 +72,26 @@ const Signup = () => {
     e.preventDefault()
     try{
       const res = await axios.post('http://localhost:5000/users/loginuser',logindata)
+   
       if(res.data.status){
       localStorage.setItem('token',res.data.data.token)
       dispatch(authState(res.data.data.data))
+      dispatch(authUser(res.data.data.data))
       dispatch(showtoast({message:res.data.data.message,type:'success'}))
-
-      if(res.data.data.data.usertype==='680e689c5b145049fc075b4e'){
+      if(res?.data?.data?.data?.usertype?.userrole.toLowerCase()==='admin'){
         navigate('/admin')
       }
-       if(res.data.data.data.usertype==='680e68965b145049fc075b4c'){
+       if(res?.data?.data?.data?.usertype?.userrole.toLowerCase()==='vendor'){
         navigate('/vender')
       }
       dispatch(authFormModal(null))
       }
       else{
-        dispatch(showtoast({message:error.response.data.data.message,type:'error'}))
+      console.log(error)
+        dispatch(showtoast({message:error?.response?.data?.data?.message,type:'error'}))
       }
     }catch(error){
+      console.log(error)
       dispatch(showtoast({message:error.message,type:'error'}))
     }
   };

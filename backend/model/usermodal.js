@@ -32,6 +32,10 @@ const userSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'country'
     },
+    state:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'state'
+    },
     eventdate:{
         type:Date,
     },

@@ -12,13 +12,14 @@ import { BsFullscreen } from "react-icons/bs";
 import { BsFullscreenExit } from "react-icons/bs";
 import { IoMailOutline } from "react-icons/io5";
 import userprofile from '../../assets/images/userimg5.png'
+import {Link} from 'react-router-dom'
 
 const VenderHeader = () =>{
      const dispatch = useDispatch()
       
         return(
             <>
-            <Container fluid className=" px-0 secondary-bg" >
+            <Container fluid className=" px-0 secondary-bg position-sticky top-0 boxShadow z-1" >
                 <div className="d-md-block d-none">
                 <Row className="align-items-center py-2 px-2 m-0 ">
                     <Col className='col-auto fs-3'>
@@ -39,9 +40,10 @@ const VenderHeader = () =>{
                     <MdOutlineDarkMode />
                     <FaRegBell />
                     <CiSettings className="settingicon"/>
-                    <img src={userprofile} alt="" width={40} className="img-fluid rounded-circle "/>
+                    <Link to='userinfo'><img src={userprofile} alt="" width={40} className="img-fluid rounded-circle "/></Link>
+                    
                     </Col>
-                </Row></div>
+                </Row></div> 
             <div >
             <div className="d-md-none d-block ">
             <Row className="m-0 align-items-center pb-2 ">
