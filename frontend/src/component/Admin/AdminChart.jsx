@@ -2,6 +2,7 @@ import ReactApexChart from 'react-apexcharts';
 import { useSelector } from 'react-redux';
 import SignupUseEffects from '../Modals/SignupUseEffects';
 import UseEffectsFile from './UseEffectsFile';
+import { useEffect } from 'react';
 
 
 const AdminChart = () => {
@@ -15,13 +16,26 @@ const AdminChart = () => {
   const totalVender = users.filter((u)=>u.usertype?.userrole  === 'vendor').length || 0;
   const totalCustomer = users.filter((u)=>u.usertype?.userrole === 'customer').length || 0;
   const userRoles = useSelector((state)=>state.admin.totalUserRoles)
-// console.log(userRoles,'fd')
-//   console.log(categories.length,countries.length,states.length,cities,length,userRoles.length,users.length)
+  
   const series = [totalVender,totalCustomer,groups.length,categories.length,countries.length,states.length,cities.length,userRoles.length,users.length]
-  const labels = ['Vender','Customer','Groups','Categories','Countries','States','Cities','Userroles','Users']
-//  const series = [totalVender,totalCustomer,categories.length,countries.length,states.length,cities.length,users.length]
-//   const labels = ['Vender','Customer','Categories','Countries','States','Cities','Users']
-console.log('Series:', series);
+
+ 
+  // const labels = ['Vender','Customer','Groups','Categories','Countries','States','Cities','Userroles','Users']
+  const labels = [
+  `Vender (${totalVender})`,
+  `Customer (${totalCustomer})`,
+  `Groups (${groups.length})`,
+  `Categories (${categories.length})`,
+  `Countries (${countries.length})`,
+  `States (${states.length})`,
+  `Cities (${cities.length})`,
+  `Userroles (${userRoles.length})`,
+  `Users (${users.length})`
+];
+console.log(series)
+ useEffect(()=>{
+
+  },[users,groups,totalVender])
   const options = {
     chart: {
       type: 'polarArea',
@@ -52,7 +66,12 @@ console.log('Series:', series);
   };
   return (
      <div>
-      <ReactApexChart options={options} series={series} type="polarArea" height={500} width={800}/>
+      {series.every(val => val === 0) ? (
+      <div>No chart data available.</div>
+    ) : (
+      <ReactApexChart  key={series.join('-')} options={options} series={series} type="polarArea" height={500} width={800} />
+    )}
+      {/* <ReactApexChart options={options} series={series} type="polarArea" height={500} width={800}/> */}
       <SignupUseEffects/>
       <UseEffectsFile/>
     </div>

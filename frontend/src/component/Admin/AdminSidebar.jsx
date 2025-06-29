@@ -25,15 +25,19 @@ const AdminSidebar = () => {
 
                     <div className='d-flex'><TbCategoryPlus className="fs-4 me-2"/> <Button className="p-0 bg-transparent border-0 textSecondary fw-medium text-start" ><Link to='category'>Business Categories </Link></Button></div>
 
-                   <div className='d-flex'><BiWorld className="fs-4 me-2"/> <Button className="p-0 bg-transparent border-0 textSecondary fw-medium text-start" ><Link to='countries'>Countries </Link></Button></div>
+                    <div className='d-flex'><PiCityBold  className="fs-4 me-2"/> <Button className="p-0 bg-transparent border-0 textSecondary fw-medium text-start" ><Link to='areas'>Areas </Link></Button></div>
+
+                    <div className='d-flex'><PiCityBold  className="fs-4 me-2"/> <Button className="p-0 bg-transparent border-0 textSecondary fw-medium text-start" ><Link to='cities'>Cities </Link></Button></div>
 
                     <div className='d-flex'><AiOutlineAim className="fs-4 me-2"/> <Button className="p-0 bg-transparent border-0 textSecondary fw-medium text-start" ><Link to='states'>States </Link></Button></div>
 
-                    <div className='d-flex'><PiCityBold  className="fs-4 me-2"/> <Button className="p-0 bg-transparent border-0 textSecondary fw-medium text-start" ><Link to='cities'>Cities </Link></Button></div>
+                   <div className='d-flex'><BiWorld className="fs-4 me-2"/> <Button className="p-0 bg-transparent border-0 textSecondary fw-medium text-start" ><Link to='countries'>Countries </Link></Button></div>
 
                     <div className='d-flex'><FaUserTie className="fs-4 me-2"/> <Button className="p-0 bg-transparent border-0 textSecondary fw-medium text-start" ><Link to='usertypes'>Usertypes </Link></Button></div>
 
                     <div className='d-flex'><PiUserListBold className="fs-4 me-2"/> <Button className="p-0 bg-transparent border-0 textSecondary fw-medium text-start" ><Link to='users'>Users </Link></Button></div>
+
+                    <div className='d-flex'><PiUserListBold className="fs-4 me-2"/> <Button className="p-0 bg-transparent border-0 textSecondary fw-medium text-start" ><Link to='eventPlace'>Event Places </Link></Button></div>
                 </Offcanvas.Body>
             </Offcanvas>
         </>

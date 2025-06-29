@@ -90,6 +90,10 @@ color: var(--color-text-on-secondary) ;
 .loggedUserinfo div span:first-of-type {
   font-weight: 600;
 }
+
+.dashBooking .table-responsive{
+  overflow-x: visible !important;
+}
 @media screen and (max-width: 500px) {
   .headicon svg{
     font-size: 28px;

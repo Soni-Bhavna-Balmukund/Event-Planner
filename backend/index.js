@@ -8,6 +8,8 @@ const userTypeRoutes = require('./router/userTypeRoutes')
 const countryRoutes = require('./router/countryRoute')
 const locationRoutes =require('./router/locationRoute')
 const stateRoutes = require('./router/stateRoute')
+const areaRoutes = require('./router/areaRoute')
+const addPlaceRoutes = require('./router/eventPlaceRoute')
 
 const app = express()
 app.use(cors())
@@ -26,6 +28,10 @@ app.use('/country',countryRoutes)
 app.use('/locations',locationRoutes)
 
 app.use('/States',stateRoutes)
+
+app.use('/Area',areaRoutes)
+
+app.use('/addPlace',addPlaceRoutes)
 
 const port = 5000;
 

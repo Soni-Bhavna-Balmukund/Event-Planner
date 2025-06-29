@@ -9,6 +9,7 @@ import Cities from "../component/Admin/Cities"
 import Usertypes from "../component/Admin/Usertypes"
 import Users from "../component/Admin/Users"
 import UserInfo from "../component/Vender/UserInfo"
+import EventPlaces from "../component/Admin/EventPlaces"
 
 const AdminRoutes = () =>{
     return(
@@ -21,9 +22,11 @@ const AdminRoutes = () =>{
                 <Route path='countries' element={<Countries/>}></Route>
                 <Route path='states' element={<States/>}></Route>
                 <Route path='cities' element={<Cities/>}></Route>
+                <Route path='areas' element={<Cities/>}></Route>
                 <Route path='usertypes' element={<Usertypes/>}></Route>
                 <Route path='users' element={<Users/>}></Route>
                 <Route path="userinfo" element={<UserInfo/>}/>
+                <Route path="eventPlace" element={<EventPlaces/>}/>
                 </Route>
             </Routes>
         </>

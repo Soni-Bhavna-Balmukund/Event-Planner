@@ -10,8 +10,10 @@ const AdminSlice = createSlice({
         userroles:[],
         statesdata:[],
         citiesdata:[],
+        areadata:[],
         users:[],
-        totalUserRoles:[]
+        totalUserRoles:[],
+        eventPlace:[]
     },
     reducers:{
         setSidebar:(state)=>{
@@ -36,14 +38,20 @@ const AdminSlice = createSlice({
         setCitiesData:(state,actions)=>{
             state.citiesdata = actions.payload
         },
+        setAreaData:(state,actions)=>{
+            state.areadata = actions.payload
+        },
         setUsers:(state,actions)=>{
             state.users = actions.payload
         },
         setUSerRoles:(state,actions)=>{
             state.totalUserRoles = actions.payload
+        },
+        setEventPlace:(state,actions)=>{
+            state.eventPlace = actions.payload
         }
     }
 })
 
-export const {setSidebar,openAdminModal,closeAdminModal,Userrole,setStatedata,setCitiesData,setUsers,setUSerRoles} = AdminSlice.actions
+export const {setSidebar,openAdminModal,closeAdminModal,Userrole,setStatedata,setCitiesData,setUsers,setUSerRoles,setEventPlace,setAreaData} = AdminSlice.actions
 export default AdminSlice.reducer

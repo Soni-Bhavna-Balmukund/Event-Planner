@@ -29,7 +29,7 @@ const Users = () => {
     const dispatch = useDispatch()
   return (
      <Container fluid>
-            <div className="d-flex justify-content-between px-4 fw-semibold" style={{color:'var(--primary-bg)'}}>
+            <div className="d-flex justify-content-between px-4 fw-semibold pt-4" style={{color:'var(--primary-bg)'}}>
               {/* <p>All users</p> */}
             <p> <Form.Control
             placeholder="Search by name or email"
@@ -38,11 +38,7 @@ const Users = () => {
             style={{ width: '250px' }}
           /></p>
             <p>Total users:- {user.length}</p></div>
-
-            {/* <div className="text-end py-2 mb-4 d-flex align-items-center justify-content-end" style={{background:'var(--accent-bg-color'}}>
-                <Button className="fs-5 " onClick={()=>dispatch(openAdminModal({type:'addUser',openmodel:'addUser'}))} style={{backgroundColor:'var(--secondary-bg)',color:'var(--color-text-on-secondary)',border:'0',marginRight:'15px'}}><HiViewGridAdd className="fs-4 me-2 "/><span>Add Usertype</span></Button>
-            </div> */}
-
+        
              <div className="d-flex align-items-center justify-content-between py-2 px-4 mb-3" style={{ background: 'var(--accent-bg-color)' }}>
         <div className="d-flex gap-3">
           <Form.Select

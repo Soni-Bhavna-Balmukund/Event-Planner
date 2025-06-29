@@ -89,9 +89,10 @@
   background-color: var(--primary-bg)!important;
   border-color: var(--primary-bg)!important;
 }
-.mySwiper,.mySwiper2 {
+/* .mySwiper,.mySwiper2 {
   width: 100%;
-  height: 100%;
+  height: 80%;
+  /* height: 100%; 
 }
 
  .swiper-slide {
@@ -99,7 +100,7 @@
   font-size: 18px;
   background: #444;
 
-  /* Center slide text vertically */
+  /* Center slide text vertically 
    display: flex;
   justify-content: center;
   align-items: center;
@@ -108,9 +109,25 @@
   display: block;
   width: 100%;
   height: 100%;
+  /* object-fit: cover; 
+}  */
+  .mySwiper,
+.mySwiper2,
+.swiper-h,
+.swiper-v,
+.swiper-slide {
+  width: 100%;
+  height: 90vh; /* This is the key */
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-} 
-.outletheight{
-  /* height: calc(100vh - 96px); */
-  height: calc(100vh - 0px);
+}
+
+@media (max-width: 768px) {
+  .mySwiper, .mySwiper2 {
+    height: 50vh;
+  }
 }

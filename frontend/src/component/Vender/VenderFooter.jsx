@@ -1,6 +1,8 @@
+import Footer from "../Footer"
+
 const VenderFooter = () =>{
     return(
-        <div>dashboard</div>
+        <Footer/>
     )
 }
 export default VenderFooter

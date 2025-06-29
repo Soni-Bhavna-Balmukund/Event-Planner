@@ -1,22 +1,26 @@
 export const menu = [
     {
         id:1,
-        title:'vennder',
+        title:'vennderd',
         path:'vender',
         children:[
             'vender','abc','wewe',
         ],
+    },
+    {
         id:2,
-        title:'vennder',
+        title:'venndersdsd',
         path:'vender',
         children:[
-            'vender','abc','wewe',
+            'vender','abcfdf','weweee',
         ],
+    },
+    {
         id:3,
-        title:'vennder',
+        title:'venndeaar',
         path:'vender',
         children:[
-            'vender','abc','wewe',
+            'venderfgd','abcdfdf','wewefgfg',
         ],
     }
 ]

@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect } from "react"
-import { setCitiesData, setStatedata, setUSerRoles, setUsers, Userrole } from "../../store/slice/AdminSlice";
+import { setAreaData, setCitiesData, setEventPlace, setStatedata, setUSerRoles, setUsers, Userrole } from "../../store/slice/AdminSlice";
 import { useDispatch } from "react-redux";
 
 const UseEffectsFile = () => {
@@ -73,6 +73,36 @@ const UseEffectsFile = () => {
     }
     fetchUser()
   },[])
+
+   useEffect(()=>{
+          const fetchEventPlaces = async() =>{
+              try{
+                  const res =await axios.get('http://localhost:5000/addPlace/allPlace')
+                  const place = res.data.data.data
+                  dispatch(setEventPlace(place))
+                  console.log(place,'plp')
+              }
+              catch(error){
+                  console.log(error)
+              }
+          } 
+          fetchEventPlaces()
+      },[])
+
+        useEffect(()=>{
+          const fetchAreas = async() =>{
+              try{
+                  const res =await axios.get('http://localhost:5000/Area/allArea')
+                  const area = res.data.data.data
+                  dispatch(setAreaData(area))
+                  console.log(area,'plp')
+              }
+              catch(error){
+                  console.log(error)
+              }
+          } 
+          fetchAreas()
+      },[])
 
   return null
 }
