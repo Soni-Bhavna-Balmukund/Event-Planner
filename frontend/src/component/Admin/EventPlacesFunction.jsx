@@ -5,6 +5,7 @@ import showtoast from '../../store/slice/toastify'
 import CreatePlace from "./Modal/EventPlaces/CreatePlace"
 import { useSelector } from "react-redux"
 import { setEventPlace } from "../../store/slice/AdminSlice"
+import ViewPlaceInfo from "./Modal/EventPlaces/ViewPlaceInfo"
 
 const EventPlacesFunction = () => {
 
@@ -107,8 +108,9 @@ const EventPlacesFunction = () => {
   return (
     <>
     {
-       adminModalType === 'addEventPlace' &&  <CreatePlace data={adminModalData} modelopen={modelopen}  formdata={formdata} handleImageChange={handleImageChange} setFormData={setFormData} addPlace={addPlace} imgPrev={imgPrev}/>
-  }
+       adminModalType === 'addEventPlace' &&  <CreatePlace data={adminModalData} modelopen={modelopen}  formdata={formdata} handleImageChange={handleImageChange} setFormData={setFormData} addPlace={addPlace} imgPrev={imgPrev}/> 
+      }
+      {adminModalType === 'viewPlaceModel' && <ViewPlaceInfo data={adminModalData} modelopen={modelopen}/>}
    </>
   )
 }

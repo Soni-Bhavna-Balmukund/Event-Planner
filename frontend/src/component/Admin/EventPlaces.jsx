@@ -94,22 +94,8 @@ const EventPlaces = () => {
                                     </td>
                                    
                                     <td className="align-middle ">
-                                        <Button
-                                            className="bg-transparent border-0 "
-                                            onClick={() =>
-                                                dispatch(
-                                                    openAdminModal({
-                                                        type: "viewModel",
-                                                        data: item,
-                                                        openmodel: "viewModel",
-                                                    })
-                                                )
-                                            }
-                                            style={{
-                                                backgroundColor:
-                                                    "var(--color-text-on-secondary)!important  ",
-                                            }}
-                                        >
+                                        <Button className="bg-transparent border-0 " onClick={() => dispatch(openAdminModal({ type: "viewPlaceModel", data: item, openmodel: "viewPlaceModel", }))}
+                                            style={{ backgroundColor: "var(--color-text-on-secondary)!important  ", }}>
                                             View
                                         </Button>
                                     </td>

@@ -2,7 +2,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import { MdOutlineRateReview } from "react-icons/md";
 import { RiMobileDownloadLine } from "react-icons/ri";
 import logo from '../assets/images/logo4(4).png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { IoSearch } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
 import { authFormModal, revieMmodalShow, searchModal } from '../store/slice/modalSlice';
@@ -18,6 +18,7 @@ import SignupUseEffects from './Modals/SignupUseEffects';
 
 const Header = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const modalType = useSelector((state) => state.modal.type)
     const auth = useSelector((state) => state.auth.auth)
     const location = useSelector((state) => state.usertype.location)
@@ -54,7 +55,8 @@ const Header = () => {
                         <Col md={2}><Link to='/'><img src={logo} alt="" className='img-fluid w-100' /></Link></Col>
                         <Col md={6} className='d-flex justify-content-around px-4 fs-5 menu ' style={{ fontFamily: 'var(--secondary-font)' }}>
 
-                            <Link to='venues' className='d-block text-decoration-none py-2 fw-medium' style={{ 'color': 'var(--color-text-on-secondary)' }}>Venues</Link>
+                            <Link to='/venues' className='d-block text-decoration-none py-2 fw-medium' style={{ 'color': 'var(--color-text-on-secondary)' }}>Venues</Link>
+                            {/* <Button  className='d-block bg-transparent border-0  py-2 px-0 fw-medium' onClick={()=>navigate('/venues')} style={{ 'color': 'var(--color-text-on-secondary)' }}>Venues</Button> */}
                             <Link to='venders' className='d-block text-decoration-none py-2 fw-medium' style={{ 'color': 'var(--color-text-on-secondary)' }}>Venders</Link>
                             <Link to='photos' className='d-block text-decoration-none py-2 fw-medium' style={{ 'color': 'var(--color-text-on-secondary)' }}>Photos</Link>
                             <Link to='realWeddings' className='d-block text-decoration-none py-2 fw-medium' style={{ 'color': 'var(--color-text-on-secondary)' }}>Real Weddings</Link>

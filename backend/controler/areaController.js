@@ -41,4 +41,28 @@ const readarea = async(req,res) =>{
     }
 }
 
-module.exports = {addArea,readarea}
+const updatearea =async(req,res) =>{
+    try{
+        const id = req.params.id
+        const area = req.body
+
+        const areafiled = {areaName:area.areaName,state:area.state,city:area.city,country:area.country}
+        const dbarea = await areaModal.updateOne({_id:id},areafiled)
+        return res.status(200).json({status:true,data:{message:'Area SuccessFully updated',data:dbarea}})
+    }
+    catch(error){
+    return res.status(500).json({ status: false, data: { message: 'Internal server error', data: error } })
+    }
+}
+
+const deletearea = async(req,res) =>{
+    try{
+        const id = req.params.id
+        const dbarea = await areaModal.deleteOne({_id:id})
+        return res.status(200).json({status:true,data:{message:'Area SuccessFully deleted',data:dbarea}})
+    }catch(error){
+        return res.status(500).json({ status: false, data: { message: 'Internal server error', data: error } })
+    }
+}
+
+module.exports = {addArea,readarea,updatearea,deletearea}

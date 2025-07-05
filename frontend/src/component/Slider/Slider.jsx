@@ -19,7 +19,7 @@ const Slider = () => {
 
   return (
     <Swiper
-      className="mySwiper swiper-h "
+      className="SliderTop mySwiper swiper-h "
       spaceBetween={50}
       pagination={{ clickable: true }}
       autoplay={{ delay: 2500, disableOnInteraction: false }}

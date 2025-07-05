@@ -89,41 +89,137 @@
   background-color: var(--primary-bg)!important;
   border-color: var(--primary-bg)!important;
 }
-/* .mySwiper,.mySwiper2 {
+
+ /* For top banner slider only */
+.SliderTop .swiper,
+.SliderTop .swiper-slide {
   width: 100%;
-  height: 80%;
-  /* height: 100%; 
+  height: 90vh !important;
 }
 
- .swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #444;
-
-  /* Center slide text vertically 
-   display: flex;
-  justify-content: center;
-  align-items: center;
-} 
- .swiper-slide img {
-  display: block;
+/* For category slider only */
+/* .SliderCat .swiper,
+.SliderCat .swiper-slide {
   width: 100%;
-  height: 100%;
-  /* object-fit: cover; 
-}  */
-  .mySwiper,
-.mySwiper2,
-.swiper-h,
-.swiper-v,
-.swiper-slide {
-  width: 100%;
-  height: 90vh; /* This is the key */
+  height: 40vh !important;
+} */
+.SliderCat .swiper {
+  /* width: 100%; */
+  height: auto;
+  /* Remove height here or keep it flexible */
 }
 
-.swiper-slide img {
+.SliderCat .swiper-slide {
+  height: auto; /* or max-height if needed */
+  display: flex;
+  flex-direction: column;
+  /* overflow: hidden; */
+  /* max-height: 40vh; */
+}
+
+.SliderTop .swiper-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+ /* Image wrapper to control hover scale */
+.SliderCat .image-wrapper {
+  /* height: calc(100% - 32px); 
+  overflow: hidden;
+  position: relative; */
+   /* flex: 1 1 auto; */
+     aspect-ratio: 1 / 1; /* Or use height: 70%; if preferred */
+  overflow: hidden;
+}
+
+.SliderCat .image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.3s ease-in-out;
+  display: block;
+}
+
+.SliderCat .image-wrapper:hover img {
+  transform: scale(1.2);
+}
+.SliderCat .cat-name  {
+  height: 32px;
+  font-weight: 500;
+  text-align: center;
+  padding: 4px 0;
+}
+.autoplay-progress {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 32px;
+  height: 32px;
+  font-size: 10px;
+  color: var(--color-text-on-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.autoplay-progress svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+    position: absolute; /* so the circle stays behind the number */
+  top: 0;
+  left: 0;
+}
+
+.autoplay-progress circle {
+  fill: none;
+  stroke: var(--color-text-on-secondary); /* change to another visible color like 'red' for testing */
+  stroke-width: 3;
+  stroke-dasharray: 126;
+  stroke-dashoffset: calc(126 * var(--progress));
+  transition: stroke-dashoffset 0.3s linear;
+}
+
+.accordion-button:focus {
+    box-shadow: none !important;
+}
+
+.accordion-button:not(.collapsed){
+  background-color: var(--accent-bg-color) !important;
+  color: #fff !important;
+ 
+}
+
+.accordion-item:first-child .accordion-button {
+  border-top-left-radius: 15px !important;
+  border-top-right-radius: 15px !important;
+}
+
+
+.slider-image {
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+@media (min-width: 768px) {
+  .slider-image {
+    height: 360px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .slider-image {
+    height: 450px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .slider-image {
+    height: 520px !important;
+  }
 }
 
 @media (max-width: 768px) {
